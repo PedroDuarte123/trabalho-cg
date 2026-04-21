@@ -12,7 +12,7 @@ Se estiver tudo certo, abra um pull request na aba Pull Requests da sua branch p
 
 
 Boas práticas:<br>
-1) Nomear a branch com o prefixo "feat" para branches de novas funcionalidades, "fix/" para branches de correções e "chore/" para tarefas que não afetam o funcionamento do código(documentação, etc.); <br>
+1) Nomear a branch com o prefixo "feat/" para branches de novas funcionalidades, "fix/" para branches de correções e "chore/" para tarefas que não afetam o funcionamento do código(documentação, etc.); <br>
 2) Utilizar mensagens claras nos commits de acordo com as suas alterações. Utilizar prefixo "feat:" para novas funcionalidades, "fix:" para correções e "chore: para alterações que não afetam funcionamento do código(documentação, etc)"<br>
 
 Comandos úteis:<br>
