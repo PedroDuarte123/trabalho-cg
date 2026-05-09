@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="jogo_cg"
-run/main_scene="uid://dfl3agmt8febk"
+run/main_scene="uid://dxv1mt5oob7af"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 

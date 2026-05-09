@@ -6,17 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://cwbno8w3aoqxd" path="res://background/BACKGROUND_3.png" id="2_8yxic"]
 [ext_resource type="Texture2D" uid="uid://cwip7ltipl1y7" path="res://background/BACKGROUND_2.png" id="3_6hafb"]
 [ext_resource type="Texture2D" uid="uid://bv6t5347mftd5" path="res://character/jump.png" id="3_dlxbr"]
-[ext_resource type="Texture2D" uid="uid://qiujxjpex6gj" path="res://background/BACKGROUND_1.png" id="3_phfuf"]
-[ext_resource type="Texture2D" uid="uid://hmpqw2ghmsia" path="res://background/BACKGROUND.png" id="4_8idvm"]
+[ext_resource type="Texture2D" uid="uid://qiujxjpex6gj" path="res://background/BACKGROUND_0.png" id="3_phfuf"]
+[ext_resource type="Texture2D" uid="uid://hmpqw2ghmsia" path="res://background/BACKGROUND_1.png" id="4_8idvm"]
 [ext_resource type="Texture2D" uid="uid://v8nhju1k3r32" path="res://character/running.png" id="4_8yxic"]
 [ext_resource type="Texture2D" uid="uid://cpwee5wkfjtga" path="res://background/FOREGROUND.png" id="5_4i1vo"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vge2"]
-size = Vector2(2300, 91)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4i1vo"]
-normal = Vector2(0.9998817, -0.015382796)
-distance = 2.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04qyp"]
 atlas = ExtResource("2_4i1vo")
@@ -221,57 +214,90 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0q20i"]
 size = Vector2(24.166656, 100.66669)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vge2"]
+size = Vector2(2909, 91)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4i1vo"]
+normal = Vector2(0.9998817, -0.015382796)
+distance = 2.0
+
 [node name="Node2D" type="Node2D" unique_id=1006839918]
 
-[node name="Parallax2D2" type="Parallax2D" parent="." unique_id=1785487050]
+[node name="Parallax2DBackground4" type="Parallax2D" parent="." unique_id=1785487050]
 scroll_scale = Vector2(0.2, 0.2)
 repeat_size = Vector2(1152, 0)
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D2" unique_id=1104348564]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground4" unique_id=1104348564]
 position = Vector2(576, 324)
 texture = ExtResource("1_dlxbr")
 
-[node name="Parallax2D3" type="Parallax2D" parent="." unique_id=544769657]
+[node name="Parallax2DBackground3" type="Parallax2D" parent="." unique_id=544769657]
 scroll_scale = Vector2(0.25, 0.25)
 scroll_offset = Vector2(-145, -40)
 repeat_size = Vector2(1152, 0)
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D3" unique_id=364630219]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground3" unique_id=364630219]
 position = Vector2(576, 324)
 texture = ExtResource("2_8yxic")
 
-[node name="Parallax2D4" type="Parallax2D" parent="." unique_id=627754241]
+[node name="Parallax2DBackground2" type="Parallax2D" parent="." unique_id=627754241]
 scroll_scale = Vector2(0.3, 0.3)
 repeat_size = Vector2(2534, 0)
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D4" unique_id=763659080]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground2" unique_id=763659080]
 position = Vector2(1267, 336)
 scale = Vector2(2.2, 2)
 texture = ExtResource("3_6hafb")
 
-[node name="Parallax2D6" type="Parallax2D" parent="." unique_id=1508328818]
+[node name="Parallax2DBackground1" type="Parallax2D" parent="." unique_id=1508328818]
 scroll_scale = Vector2(0.4, 0.4)
 repeat_size = Vector2(1368, 0)
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D6" unique_id=1555284393]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground1" unique_id=1555284393]
 position = Vector2(924, 450)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_8idvm")
 
-[node name="Parallax2D5" type="Parallax2D" parent="." unique_id=1104227061]
+[node name="Parallax2DBackground0" type="Parallax2D" parent="." unique_id=1104227061]
 scroll_scale = Vector2(0.45, 0.45)
 repeat_size = Vector2(1368, 0)
+metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D5" unique_id=849027855]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground0" unique_id=849027855]
 position = Vector2(575.99994, 482)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("3_phfuf")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=586924982]
+position = Vector2(323, 489)
+script = ExtResource("1_plxss")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=809768351]
+position = Vector2(109.99999, 0)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_x63s8")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=175548339]
+position = Vector2(110.0625, 12.25)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_0q20i")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1326505222]
+position = Vector2(250, -146)
+zoom = Vector2(1.1, 1.1)
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1013707754]
 position = Vector2(10, 638)
 
 [node name="GroundCollision" type="CollisionShape2D" parent="StaticBody2D" unique_id=1183332375]
-position = Vector2(1141, -36)
+position = Vector2(1445.5, -36)
 shape = SubResource("RectangleShape2D_4vge2")
 
 [node name="GroundColorTexture" type="ColorRect" parent="StaticBody2D" unique_id=1492699404]
@@ -287,34 +313,14 @@ position = Vector2(-12, -125)
 shape = SubResource("WorldBoundaryShape2D_4i1vo")
 
 [node name="WordLimitCollision2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1761105522]
-position = Vector2(2292, -125)
+position = Vector2(2831, -125)
 rotation = -3.1415927
 shape = SubResource("WorldBoundaryShape2D_4i1vo")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=586924982]
-position = Vector2(323, 489)
-script = ExtResource("1_plxss")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=809768351]
-scale = Vector2(1.75, 1.75)
-sprite_frames = SubResource("SpriteFrames_x63s8")
-animation = &"Idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=175548339]
-position = Vector2(0.0625, 12.25)
-scale = Vector2(0.75, 0.75)
-shape = SubResource("RectangleShape2D_0q20i")
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D" unique_id=1326505222]
-position = Vector2(250, -146)
-zoom = Vector2(1.1, 1.1)
-position_smoothing_enabled = true
-position_smoothing_speed = 4.0
-
-[node name="Parallax2D" type="Parallax2D" parent="." unique_id=753435502]
+[node name="Parallax2DForeground" type="Parallax2D" parent="." unique_id=753435502]
 repeat_size = Vector2(1728, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=986047760]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DForeground" unique_id=986047760]
 position = Vector2(864, 425.00003)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_4i1vo")
