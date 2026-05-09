@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://dxv1mt5oob7af"]
+
+[ext_resource type="Texture2D" uid="uid://g72vhpdqtf1y" path="res://background/BACKGROUND_4.png" id="1_krunx"]
+[ext_resource type="Texture2D" uid="uid://cwbno8w3aoqxd" path="res://background/BACKGROUND_3.png" id="2_x8pbt"]
+[ext_resource type="Texture2D" uid="uid://cwip7ltipl1y7" path="res://background/BACKGROUND_2.png" id="3_lfna2"]
+[ext_resource type="Texture2D" uid="uid://hmpqw2ghmsia" path="res://background/BACKGROUND_1.png" id="4_m26gy"]
+[ext_resource type="Texture2D" uid="uid://qiujxjpex6gj" path="res://background/BACKGROUND_0.png" id="5_2b28d"]
+[ext_resource type="Texture2D" uid="uid://rliq4jl1x0dd" path="res://background/Bat_Sprite_Sheet.png" id="6_5w37d"]
+[ext_resource type="PackedScene" uid="uid://c7e573bl2lhj2" path="res://scenes/player.tscn" id="7_n26xj"]
+[ext_resource type="Texture2D" uid="uid://cpwee5wkfjtga" path="res://background/FOREGROUND.png" id="8_0c7p4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g470a"]
+atlas = ExtResource("6_5w37d")
+region = Rect2(0, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_alj4n"]
+atlas = ExtResource("6_5w37d")
+region = Rect2(16, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f4uj"]
+atlas = ExtResource("6_5w37d")
+region = Rect2(32, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l2v0"]
+atlas = ExtResource("6_5w37d")
+region = Rect2(48, 0, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knm5q"]
+atlas = ExtResource("6_5w37d")
+region = Rect2(64, 0, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p3ank"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g470a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_alj4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f4uj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l2v0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knm5q")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 8.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_rv1hm"]
+script/source = "extends AnimatedSprite2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vge2"]
+size = Vector2(2909, 91)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4i1vo"]
+normal = Vector2(0.9998817, -0.015382796)
+distance = 2.0
+
+[node name="Game" type="Node2D" unique_id=1006839918]
+
+[node name="Parallax2DBackground4" type="Parallax2D" parent="." unique_id=1785487050]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1152, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground4" unique_id=1104348564]
+position = Vector2(576, 324)
+texture = ExtResource("1_krunx")
+
+[node name="Parallax2DBackground3" type="Parallax2D" parent="." unique_id=544769657]
+scroll_scale = Vector2(0.25, 0.25)
+scroll_offset = Vector2(-145, -40)
+repeat_size = Vector2(1152, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground3" unique_id=364630219]
+position = Vector2(576, 324)
+texture = ExtResource("2_x8pbt")
+
+[node name="Parallax2DBackground2" type="Parallax2D" parent="." unique_id=627754241]
+scroll_scale = Vector2(0.3, 0.3)
+repeat_size = Vector2(2534, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground2" unique_id=763659080]
+position = Vector2(1267, 336)
+scale = Vector2(2.2, 2)
+texture = ExtResource("3_lfna2")
+
+[node name="Parallax2DBackground1" type="Parallax2D" parent="." unique_id=1508328818]
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(1368, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground1" unique_id=1555284393]
+position = Vector2(924, 450)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_m26gy")
+
+[node name="Parallax2DBackground0" type="Parallax2D" parent="." unique_id=1104227061]
+scroll_scale = Vector2(0.5, 0.5)
+repeat_size = Vector2(1368, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DBackground0" unique_id=849027855]
+position = Vector2(575.99994, 482)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("5_2b28d")
+
+[node name="Parallax2DBackground5" type="Parallax2D" parent="." unique_id=604942947]
+repeat_size = Vector2(2000, 0)
+autoscroll = Vector2(50, 0)
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Parallax2DBackground5" unique_id=947305]
+position = Vector2(284, 191.00002)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_p3ank")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.616926
+script = SubResource("GDScript_rv1hm")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Parallax2DBackground5" unique_id=1750307601]
+position = Vector2(326.00003, 207.00002)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_p3ank")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.616926
+script = SubResource("GDScript_rv1hm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Parallax2DBackground5" unique_id=1570800982]
+position = Vector2(280, 225)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_p3ank")
+animation = &"fly"
+autoplay = "fly"
+frame_progress = 0.616926
+script = SubResource("GDScript_rv1hm")
+
+[node name="Player" parent="." unique_id=476727846 instance=ExtResource("7_n26xj")]
+position = Vector2(395, 472)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1013707754]
+position = Vector2(10, 638)
+
+[node name="GroundCollision" type="CollisionShape2D" parent="StaticBody2D" unique_id=1183332375]
+position = Vector2(1445.5, -36)
+shape = SubResource("RectangleShape2D_4vge2")
+
+[node name="GroundColorTexture" type="ColorRect" parent="StaticBody2D" unique_id=1492699404]
+offset_left = -10.0
+offset_top = -81.0
+offset_right = 2291.0
+offset_bottom = 10.0
+color = Color(0.07771898, 0.07089444, 0.16108933, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="WordLimitCollision" type="CollisionShape2D" parent="StaticBody2D" unique_id=667420130]
+position = Vector2(-12, -125)
+shape = SubResource("WorldBoundaryShape2D_4i1vo")
+
+[node name="WordLimitCollision2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1761105522]
+position = Vector2(2831, -125)
+rotation = -3.1415927
+shape = SubResource("WorldBoundaryShape2D_4i1vo")
+
+[node name="Parallax2DForeground" type="Parallax2D" parent="." unique_id=753435502]
+repeat_size = Vector2(1728, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DForeground" unique_id=986047760]
+position = Vector2(864, 425.00003)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_0c7p4")
