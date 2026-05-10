@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cmcsxwfhhbwi3" path="res://scripts/player.gd" id="1_dqkch"]
 [ext_resource type="Texture2D" uid="uid://cnwu1j6ajkbm8" path="res://character/idle.png" id="1_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://bv6t5347mftd5" path="res://character/jump.png" id="2_dqkch"]
+[ext_resource type="Texture2D" uid="uid://cm4b6d7gvqixo" path="res://character/cast_shadow.png" id="2_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://v8nhju1k3r32" path="res://character/running.png" id="3_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_04qyp"]
@@ -210,6 +211,15 @@ size = Vector2(24.166656, 100.66669)
 
 [node name="Player" type="CharacterBody2D" unique_id=476727846]
 script = ExtResource("1_dqkch")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1031033283]
+modulate = Color(1, 1, 1, 0.6)
+position = Vector2(-3, 48.000004)
+scale = Vector2(0.06, 0.066)
+texture = ExtResource("2_qlg0r")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1628476702]
+target_position = Vector2(0, 300)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=529648056]
 position = Vector2(3.8146973e-06, 0)

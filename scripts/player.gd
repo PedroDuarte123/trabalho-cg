@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@onready var ray = $RayCast2D
+@onready var shadow = $Shadow
+
 const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 var was_on_floor := true
@@ -39,4 +42,18 @@ func _physics_process(delta: float) -> void:
 		else:
 			$AnimatedSprite2D.play("Idle")
 			$AnimatedSprite2D.offset.y = 0
-			
+
+func _process(delta):
+	if ray.is_colliding():
+		var hit = ray.get_collision_point()
+		var normal = ray.get_collision_normal()
+		
+		if normal.angle_to(Vector2.UP) < deg_to_rad(45):
+			shadow.global_position = Vector2(global_position.x, hit.y)
+			shadow.rotation = normal.angle() + PI / 2
+			shadow.visible = true
+		else:
+			shadow.visible = false
+	else:
+		shadow.visible = false
+	
