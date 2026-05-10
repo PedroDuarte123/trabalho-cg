@@ -1,18 +1,20 @@
 extends CharacterBody2D
 
 const SPEED = 400.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -400.0
 var was_on_floor := true
 
 func _physics_process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# Jump
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
+		
+	if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_pressed("Down"):
+			position.y += 1
+		else:
+			velocity.y = JUMP_VELOCITY
+		
 	# Movement
 	var direction := Input.get_axis("Left", "Right")
 	if direction:
