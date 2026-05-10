@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://rliq4jl1x0dd" path="res://background/Bat_Sprite_Sheet.png" id="6_5w37d"]
 [ext_resource type="PackedScene" uid="uid://c7e573bl2lhj2" path="res://scenes/player.tscn" id="7_n26xj"]
 [ext_resource type="Texture2D" uid="uid://cpwee5wkfjtga" path="res://background/FOREGROUND.png" id="8_0c7p4"]
+[ext_resource type="PackedScene" path="res://scenes/flashlight_dummy.tscn" id="9_flashlight_dummy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g470a"]
 atlas = ExtResource("6_5w37d")
@@ -158,6 +159,9 @@ script = SubResource("GDScript_rv1hm")
 
 [node name="Player" parent="." unique_id=476727846 instance=ExtResource("7_n26xj")]
 position = Vector2(395, 472)
+
+[node name="FlashlightDummy" parent="Player" unique_id=1591955540 instance=ExtResource("9_flashlight_dummy")]
+position = Vector2(25, -4)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1013707754]
 position = Vector2(10, 638)
