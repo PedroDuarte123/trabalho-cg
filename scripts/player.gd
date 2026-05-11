@@ -3,11 +3,13 @@ extends CharacterBody2D
 @onready var ray = $RayCast2D
 @onready var shadow = $Shadow
 
+
 const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 var was_on_floor := true
 
 func _physics_process(delta: float) -> void:
+
 	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -56,4 +58,6 @@ func _process(delta):
 			shadow.visible = false
 	else:
 		shadow.visible = false
+		
+
 	
