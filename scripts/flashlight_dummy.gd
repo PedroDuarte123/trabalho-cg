@@ -4,7 +4,7 @@ class_name FlashlightDummy
 signal target_entered(target: Node2D)
 signal target_exited(target: Node2D)
 
-@export var enabled: bool = true:
+@export var enabled: bool = false:
 	set(value):
 		enabled = value
 		_update_enabled()
@@ -217,3 +217,8 @@ func _generate_cone_texture(w: int, h: int) -> Texture2D:
 
 	var tex := ImageTexture.create_from_image(img)
 	return tex
+	
+func _unhandled_input(event: InputEvent) -> void:
+	# Alterna o estado ao pressionar a ação configurada no Input Map (ex: "flashlight_toggle")
+	if event.is_action_pressed("Flashlight"):
+		enabled = !enabled

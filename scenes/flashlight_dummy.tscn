@@ -1,16 +1,16 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://xepem5tyr1fu"]
 
-[ext_resource type="Script" path="res://scripts/flashlight_dummy.gd" id="1_flashlight_dummy"]
+[ext_resource type="Script" uid="uid://b5aqqh6hpkjif" path="res://scripts/flashlight_dummy.gd" id="1_flashlight_dummy"]
 
-[node name="FlashlightDummy" type="Node2D"]
+[node name="FlashlightDummy" type="Node2D" unique_id=1374049123]
 script = ExtResource("1_flashlight_dummy")
 
-[node name="Light" type="PointLight2D" parent="."]
-energy = 1.2
+[node name="Light" type="PointLight2D" parent="." unique_id=393455251]
 color = Color(1, 0.98, 0.9, 1)
-shadow_enabled = false
+energy = 3.5
+shadow_enabled = true
 
-[node name="BeamArea" type="Area2D" parent="."]
+[node name="BeamArea" type="Area2D" parent="." unique_id=184074700]
 
-[node name="BeamCollision" type="CollisionPolygon2D" parent="BeamArea"]
+[node name="BeamCollision" type="CollisionPolygon2D" parent="BeamArea" unique_id=1092850854]
 polygon = PackedVector2Array(0, -10, 650, -150, 650, 150, 0, 10)
