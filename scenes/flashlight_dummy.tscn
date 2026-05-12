@@ -7,7 +7,7 @@ script = ExtResource("1_flashlight_dummy")
 
 [node name="Light" type="PointLight2D" parent="." unique_id=393455251]
 color = Color(1, 0.98, 0.9, 1)
-energy = 3.5
+energy = 8.0
 shadow_enabled = true
 
 [node name="BeamArea" type="Area2D" parent="." unique_id=184074700]
