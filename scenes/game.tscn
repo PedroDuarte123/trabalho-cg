@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://dxv1mt5oob7af"]
 
+[ext_resource type="Texture2D" uid="uid://kt58bk5ar12c" path="res://sprites/leafspritesheet.png" id="1_ir15t"]
 [ext_resource type="Texture2D" uid="uid://g72vhpdqtf1y" path="res://background/BACKGROUND_4.png" id="1_krunx"]
 [ext_resource type="Texture2D" uid="uid://cwbno8w3aoqxd" path="res://background/BACKGROUND_3.png" id="2_x8pbt"]
 [ext_resource type="Texture2D" uid="uid://cwip7ltipl1y7" path="res://background/BACKGROUND_2.png" id="3_lfna2"]
@@ -14,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dq23lm66g84u7" path="res://sprites/Tiles.png" id="10_vtaks"]
 [ext_resource type="Texture2D" uid="uid://bkrxoxd36sduf" path="res://sprites/Salt.png" id="11_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dlia186rsveop" path="res://scenes/plataforma.tscn" id="13_kvuet"]
+[ext_resource type="Script" uid="uid://ccc24p2dyqf2h" path="res://scenes/gpu_particles_2d.gd" id="14_ca42v"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 3
@@ -1328,6 +1330,35 @@ _data = {
 &"RighLeft_move": SubResource("Animation_ca42v")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ca42v"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_rysoc"]
+offsets = PackedFloat32Array(0, 0.2137931, 0.8137931, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ssvqc"]
+gradient = SubResource("Gradient_rysoc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_trtic"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(50, -50, 0)
+emission_shape = 3
+emission_box_extents = Vector3(900, 350, 1)
+spread = 20.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+angular_velocity_min = -1.6093254e-05
+angular_velocity_max = 24.999983
+gravity = Vector3(0, 10, 0)
+scale_min = 0.5
+scale_max = 2.0
+color_ramp = SubResource("GradientTexture1D_ssvqc")
+anim_offset_max = 1.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ir15t"]
 shader = ExtResource("10_trtic")
 
@@ -1357,6 +1388,7 @@ metadata/_edit_lock_ = true
 modulate = Color(0.9721986, 0.9721986, 0.9721986, 1)
 position = Vector2(576, 324)
 texture = ExtResource("1_krunx")
+metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground3" type="Parallax2D" parent="Parallax" unique_id=544769657]
 z_index = -2
@@ -1369,6 +1401,7 @@ metadata/_edit_lock_ = true
 modulate = Color(0.7, 0.7, 0.7, 1)
 position = Vector2(576, 324)
 texture = ExtResource("2_x8pbt")
+metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground2" type="Parallax2D" parent="Parallax" unique_id=627754241]
 z_index = -2
@@ -1381,6 +1414,7 @@ modulate = Color(0.7, 0.7, 0.7, 1)
 position = Vector2(1267, 336)
 scale = Vector2(2.2, 2)
 texture = ExtResource("3_lfna2")
+metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground1" type="Parallax2D" parent="Parallax" unique_id=1508328818]
 z_index = -2
@@ -1392,6 +1426,7 @@ metadata/_edit_lock_ = true
 position = Vector2(924, 450)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_m26gy")
+metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground0" type="Parallax2D" parent="Parallax" unique_id=1104227061]
 z_index = -2
@@ -1404,6 +1439,7 @@ modulate = Color(0.9, 0.9, 0.9, 1)
 position = Vector2(575.99994, 482)
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("5_2b28d")
+metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground5" type="Parallax2D" parent="Parallax" unique_id=604942947]
 modulate = Color(0.9, 0.9, 0.9, 1)
@@ -1498,6 +1534,7 @@ rotation = -3.1415927
 shape = SubResource("WorldBoundaryShape2D_4i1vo")
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1984495833]
+metadata/_edit_lock_ = true
 
 [node name="TilesGerais" type="TileMapLayer" parent="Tiles" unique_id=1297973919]
 z_index = 1
@@ -1529,6 +1566,17 @@ position = Vector2(4093, 126)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Tiles/Plataforma2" unique_id=607569719]
 libraries/ = SubResource("AnimationLibrary_rysoc")
 autoplay = &"RighLeft_move"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=61534768]
+modulate = Color(0.8, 0.8, 0.8, 1)
+z_index = 2
+material = SubResource("CanvasItemMaterial_ca42v")
+position = Vector2(477, 350)
+amount = 80
+texture = ExtResource("1_ir15t")
+visibility_rect = Rect2(-2900, -350, 7000, 600)
+process_material = SubResource("ParticleProcessMaterial_trtic")
+script = ExtResource("14_ca42v")
 
 [node name="Parallax2DForeground" type="Parallax2D" parent="." unique_id=753435502]
 light_mask = 2
