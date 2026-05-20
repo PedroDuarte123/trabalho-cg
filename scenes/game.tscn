@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c7e573bl2lhj2" path="res://scenes/player.tscn" id="7_n26xj"]
 [ext_resource type="Texture2D" uid="uid://cpwee5wkfjtga" path="res://background/FOREGROUND.png" id="8_0c7p4"]
 [ext_resource type="PackedScene" uid="uid://xepem5tyr1fu" path="res://scenes/flashlight_dummy.tscn" id="9_flashlight_dummy"]
+[ext_resource type="Shader" uid="uid://bv2gj0mhmuuv3" path="res://scenes/game.gdshader" id="10_trtic"]
 [ext_resource type="Texture2D" uid="uid://dq23lm66g84u7" path="res://sprites/Tiles.png" id="10_vtaks"]
 [ext_resource type="Texture2D" uid="uid://bkrxoxd36sduf" path="res://sprites/Salt.png" id="11_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://dlia186rsveop" path="res://scenes/plataforma.tscn" id="13_kvuet"]
@@ -1327,6 +1328,9 @@ _data = {
 &"RighLeft_move": SubResource("Animation_ca42v")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir15t"]
+shader = ExtResource("10_trtic")
+
 [node name="Game" type="Node2D" unique_id=1006839918]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1727302961]
@@ -1336,7 +1340,9 @@ environment = SubResource("Environment_kvuet")
 rotation = -0.6719518
 color = Color(0.5030861, 0.52113277, 1, 1)
 energy = 1.25
+range_item_cull_mask = 0
 shadow_enabled = true
+shadow_filter_smooth = 5.0
 max_distance = 9214.0
 
 [node name="Parallax" type="Node" parent="." unique_id=88944641]
@@ -1474,7 +1480,7 @@ texture_scale = 8.0
 
 [node name="Player" parent="." unique_id=476727846 instance=ExtResource("7_n26xj")]
 z_index = 1
-position = Vector2(390, 471)
+position = Vector2(421, 480)
 
 [node name="FlashlightDummy" parent="Player" unique_id=1591955540 instance=ExtResource("9_flashlight_dummy")]
 position = Vector2(25, -4)
@@ -1490,17 +1496,6 @@ shape = SubResource("WorldBoundaryShape2D_4i1vo")
 position = Vector2(4089, -184)
 rotation = -3.1415927
 shape = SubResource("WorldBoundaryShape2D_4i1vo")
-
-[node name="Parallax2DForeground" type="Parallax2D" parent="." unique_id=753435502]
-z_index = 2
-repeat_size = Vector2(1728, 0)
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2DForeground" unique_id=986047760]
-modulate = Color(0.85, 0.85, 0.85, 1)
-position = Vector2(864, 425.00003)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("8_0c7p4")
 
 [node name="Tiles" type="Node2D" parent="." unique_id=1984495833]
 
@@ -1534,3 +1529,17 @@ position = Vector2(4093, 126)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Tiles/Plataforma2" unique_id=607569719]
 libraries/ = SubResource("AnimationLibrary_rysoc")
 autoplay = &"RighLeft_move"
+
+[node name="Parallax2DForeground" type="Parallax2D" parent="." unique_id=753435502]
+light_mask = 2
+z_index = 2
+repeat_size = Vector2(1728, 0)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2DForeground" unique_id=986047760]
+modulate = Color(0.85, 0.85, 0.85, 1)
+light_mask = 2
+material = SubResource("ShaderMaterial_ir15t")
+position = Vector2(864, 425.00003)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_0c7p4")
