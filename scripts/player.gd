@@ -3,7 +3,9 @@ extends CharacterBody2D
 @onready var ray = $RayCast2D
 @onready var shadow = $Shadow
 
-
+@onready var hearts_list = get_tree().get_first_node_in_group("hearts").get_children()
+@onready var lifebar = get_tree().get_first_node_in_group("lifebar")
+var health = 3
 const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 var was_on_floor := true
@@ -58,6 +60,18 @@ func _process(delta):
 			shadow.visible = false
 	else:
 		shadow.visible = false
+		
+func damage() -> void:
+	if health <= 0:
+		return
+		
+	health -= 1
+	var life = hearts_list[health]
+	life.get_node("Skull").play("damage")
+	life.get_node("DamageAnimation").play("default")
+	lifebar.frame = 3 - health
+	
+	
 		
 
 	

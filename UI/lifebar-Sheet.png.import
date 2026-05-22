@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmbuof6tr44q8"
-path="res://.godot/imported/lifebar.png-179bf800fb0b25a9980a7e1a59800103.ctex"
+uid="uid://badbg56hvdydh"
+path="res://.godot/imported/lifebar-Sheet.png-67e28941533c3506b421d31cdb3f76d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/lifebar.png"
-dest_files=["res://.godot/imported/lifebar.png-179bf800fb0b25a9980a7e1a59800103.ctex"]
+source_file="res://UI/lifebar-Sheet.png"
+dest_files=["res://.godot/imported/lifebar-Sheet.png-67e28941533c3506b421d31cdb3f76d8.ctex"]
 
 [params]
 

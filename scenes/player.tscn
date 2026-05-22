@@ -209,7 +209,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fjrip"]
 size = Vector2(24.166656, 100.66669)
 
-[node name="Player" type="CharacterBody2D" unique_id=476727846]
+[node name="Player" type="CharacterBody2D" unique_id=476727846 groups=["player"]]
 script = ExtResource("1_dqkch")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1031033283]
