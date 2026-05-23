@@ -2,9 +2,12 @@ extends CharacterBody2D
 
 @onready var ray = $RayCast2D
 @onready var shadow = $Shadow
-
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hearts_list = get_tree().get_first_node_in_group("hearts").get_children()
 @onready var lifebar = get_tree().get_first_node_in_group("lifebar")
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+@onready var point_light_2d: PointLight2D = $GPUParticles2D/PointLight2D
+
 var health = 3
 const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
@@ -62,14 +65,34 @@ func _process(delta):
 		shadow.visible = false
 		
 func damage() -> void:
-	if health <= 0:
-		return
+	
+	
+	#if health <= 0:
+		#return
 		
 	health -= 1
+	
+	#efeito piscar
+	var tween = get_tree().create_tween()
+	tween.tween_method(SetShader_BlinkIntensity, 1.0, 0.0, 0.4)
+	
+	#efeito particulas
+	gpu_particles_2d.restart();
+	gpu_particles_2d.emitting = true;
+	point_light_2d.enabled = true;
+	
+
 	var life = hearts_list[health]
 	life.get_node("Skull").play("damage")
 	life.get_node("DamageAnimation").play("default")
 	lifebar.frame = 3 - health
+	
+	#efeito luz final
+	await get_tree().create_timer(gpu_particles_2d.lifetime).timeout
+	point_light_2d.enabled = false;
+	
+func SetShader_BlinkIntensity(newValue: float):
+	animated_sprite_2d.material.set_shader_parameter("blink_intensity", newValue)
 	
 	
 		

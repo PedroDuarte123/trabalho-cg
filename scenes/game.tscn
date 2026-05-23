@@ -1388,8 +1388,8 @@ environment = SubResource("Environment_kvuet")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=103024750]
 rotation = -0.6719518
-color = Color(0.5030861, 0.52113277, 1, 1)
-energy = 1.25
+color = Color(0.44578505, 0.44567972, 0.9999941, 1)
+energy = 2.0
 range_item_cull_mask = 0
 shadow_enabled = true
 shadow_filter_smooth = 5.0
@@ -1507,7 +1507,7 @@ frame_progress = 0.2628406
 
 [node name="LuzFogueira" type="PointLight2D" parent="Background Elements/Fogueira1" unique_id=1388119984]
 color = Color(0.9933472, 0.74738556, 0.5588134, 1)
-energy = 5.0
+energy = 6.0
 range_z_min = -2
 range_z_max = 1
 shadow_enabled = true
@@ -1526,7 +1526,7 @@ frame_progress = 0.31777757
 
 [node name="LuzFogueira" type="PointLight2D" parent="Background Elements/Fogueira2" unique_id=1473284390]
 color = Color(0.9933472, 0.74738556, 0.5588134, 1)
-energy = 5.0
+energy = 6.0
 range_z_min = -2
 range_z_max = 1
 shadow_enabled = true
