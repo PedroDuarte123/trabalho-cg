@@ -67,8 +67,8 @@ func _process(delta):
 func damage() -> void:
 	
 	
-	#if health <= 0:
-		#return
+	if health <= 0:
+		return
 		
 	health -= 1
 	
