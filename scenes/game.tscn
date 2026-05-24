@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bkrxoxd36sduf" path="res://sprites/Salt.png" id="11_kvpfn"]
 [ext_resource type="Script" uid="uid://bxj8ipm64ggiq" path="res://scripts/danoplaceholder.gd" id="13_264po"]
 [ext_resource type="PackedScene" uid="uid://dlia186rsveop" path="res://scenes/plataforma.tscn" id="13_kvuet"]
+[ext_resource type="PackedScene" uid="uid://bp2oaxp0uj2rf" path="res://scenes/checkpoints.tscn" id="14_1kice"]
 [ext_resource type="Script" uid="uid://ccc24p2dyqf2h" path="res://scripts/gpu_particles_2d.gd" id="14_ca42v"]
 [ext_resource type="Shader" uid="uid://o8kiscgkax0i" path="res://shaders/foreground.gdshader" id="16_rysoc"]
 [ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="18_ssvqc"]
@@ -383,7 +384,8 @@ animations = [{
 }]
 
 [sub_resource type="Gradient" id="Gradient_dinhu"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.91534394, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kvuet"]
 gradient = SubResource("Gradient_dinhu")
@@ -1603,6 +1605,9 @@ offset_bottom = 289.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="danoplaceholder/Area2D" unique_id=1650031305]
 position = Vector2(477, 269)
 shape = SubResource("RectangleShape2D_ssvqc")
+
+[node name="Checkpoint" parent="." unique_id=247676925 instance=ExtResource("14_1kice")]
+position = Vector2(1362, 405)
 
 [node name="Pos-Processamento" type="Node2D" parent="." unique_id=2073975394]
 metadata/_edit_lock_ = true
