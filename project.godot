@@ -29,9 +29,10 @@ version_control/autoload_on_startup=true
 
 [global_group]
 
-player=""
 hearts=""
 lifebar=""
+Enemies=""
+Player=""
 
 [input]
 

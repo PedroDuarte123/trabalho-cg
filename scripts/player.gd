@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var point_light_2d: PointLight2D = $GPUParticles2D/PointLight2D
 
+
 var health = 3
 const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
