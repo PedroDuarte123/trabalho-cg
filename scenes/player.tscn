@@ -248,7 +248,9 @@ fill = 1
 fill_from = Vector2(0.47008547, 0.50769234)
 fill_to = Vector2(0.13162394, 0.104273506)
 
-[node name="Player" type="CharacterBody2D" unique_id=476727846 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=476727846 groups=["Player", "player"]]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_dqkch")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1031033283]

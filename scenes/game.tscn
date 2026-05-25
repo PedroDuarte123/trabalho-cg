@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://ccc24p2dyqf2h" path="res://scripts/gpu_particles_2d.gd" id="14_ca42v"]
 [ext_resource type="Shader" uid="uid://o8kiscgkax0i" path="res://shaders/foreground.gdshader" id="16_rysoc"]
 [ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="18_ssvqc"]
+[ext_resource type="PackedScene" uid="uid://dcrjxi7efeqyo" path="res://scenes/skeleton.tscn" id="21_5newe"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 3
@@ -1731,5 +1732,13 @@ metadata/_edit_lock_ = true
 [node name="LifebarCanvasLayer" parent="." unique_id=198287825 instance=ExtResource("18_ssvqc")]
 offset = Vector2(50, 30)
 transform = Transform2D(1, 0, 0, 1, 50, 30)
+
+[node name="Skeleton" parent="." unique_id=903582782 instance=ExtResource("21_5newe")]
+z_index = 1
+position = Vector2(3157, 425)
+
+[node name="Skeleton2" parent="." unique_id=259601359 instance=ExtResource("21_5newe")]
+z_index = 1
+position = Vector2(4266, 294)
 
 [connection signal="body_entered" from="danoplaceholder/Area2D" to="danoplaceholder" method="_on_area_2d_body_entered"]
