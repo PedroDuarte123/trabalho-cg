@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal died
+
 @onready var ray = $RayCast2D
 @onready var shadow = $Shadow
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -9,12 +11,18 @@ extends CharacterBody2D
 @onready var point_light_2d: PointLight2D = $GPUParticles2D/PointLight2D
 
 
-var health = 3
+const MAX_HEALTH := 3
+var health := MAX_HEALTH
+var is_dead := false
 const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 var was_on_floor := true
 
 func _physics_process(delta: float) -> void:
+	if is_dead:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return
 
 	# Gravity
 	if not is_on_floor():
@@ -66,8 +74,8 @@ func _process(delta):
 		shadow.visible = false
 		
 func damage() -> void:
-	
-	
+	if is_dead:
+		return
 	if health <= 0:
 		return
 		
@@ -87,10 +95,44 @@ func damage() -> void:
 	life.get_node("Skull").play("damage")
 	life.get_node("DamageAnimation").play("default")
 	lifebar.frame = 3 - health
+
+	if health <= 0 and not is_dead:
+		is_dead = true
+		emit_signal("died")
 	
 	#efeito luz final
 	await get_tree().create_timer(gpu_particles_2d.lifetime).timeout
 	point_light_2d.enabled = false;
+
+
+func respawn_at(new_global_position: Vector2) -> void:
+	global_position = new_global_position
+	velocity = Vector2.ZERO
+	reset_health()
+
+
+func reset_health() -> void:
+	health = MAX_HEALTH
+	is_dead = false
+	_update_health_ui_full()
+
+
+func _update_health_ui_full() -> void:
+	if lifebar:
+		lifebar.frame = 0
+	for life in hearts_list:
+		if not life:
+			continue
+		var skull := life.get_node_or_null("Skull")
+		if skull and skull is AnimatedSprite2D:
+			if (skull as AnimatedSprite2D).sprite_frames and (skull as AnimatedSprite2D).sprite_frames.has_animation("idle"):
+				(skull as AnimatedSprite2D).play("idle")
+			else:
+				(skull as AnimatedSprite2D).stop()
+		var damage_anim := life.get_node_or_null("DamageAnimation")
+		if damage_anim and damage_anim is AnimatedSprite2D:
+			(damage_anim as AnimatedSprite2D).stop()
+			(damage_anim as AnimatedSprite2D).frame = 0
 	
 func SetShader_BlinkIntensity(newValue: float):
 	animated_sprite_2d.material.set_shader_parameter("blink_intensity", newValue)

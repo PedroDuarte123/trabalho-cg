@@ -22,6 +22,7 @@
 [ext_resource type="Shader" uid="uid://o8kiscgkax0i" path="res://shaders/foreground.gdshader" id="16_rysoc"]
 [ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="18_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://dcrjxi7efeqyo" path="res://scenes/skeleton.tscn" id="21_5newe"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="23_game_manager"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 3
@@ -1386,6 +1387,7 @@ noise = SubResource("FastNoiseLite_ca42v")
 shader = ExtResource("16_rysoc")
 
 [node name="Game" type="Node2D" unique_id=1006839918]
+script = ExtResource("23_game_manager")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1727302961]
 environment = SubResource("Environment_kvuet")
