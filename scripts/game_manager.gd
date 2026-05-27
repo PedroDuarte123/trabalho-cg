@@ -3,8 +3,6 @@ extends Node2D
 const SAVE_PATH := "user://savegame.cfg"
 const SAVE_SECTION := "player"
 
-@export var respawn_delay_seconds := 0.8
-
 @onready var player: CharacterBody2D = $Player
 
 var respawn_position: Vector2
@@ -31,9 +29,8 @@ func set_checkpoint(new_respawn_position: Vector2) -> void:
 
 
 func _on_player_died() -> void:
-	var deathS = death_screen.instantiate()
-	get_tree().root.add_child(deathS)
-	_show_death_overlay(true)
+	var deathS =_instantiate_death_screen()
+	await deathS.finished
 
 	if is_instance_valid(player):
 		if player.has_method("respawn_at"):
@@ -41,12 +38,11 @@ func _on_player_died() -> void:
 		else:
 			player.global_position = respawn_position
 
-	_show_death_overlay(false)
 
-
-func _show_death_overlay(visible: bool) -> void:
+func _instantiate_death_screen():
 	var deathS = death_screen.instantiate()
-	get_tree().root.add_child( deathS)
+	get_tree().root.add_child(deathS)
+	return deathS
 
 
 func _load_checkpoint_if_any() -> void:

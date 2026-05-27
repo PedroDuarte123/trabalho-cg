@@ -1,6 +1,8 @@
 # death_screen.gd
 extends CanvasLayer
 
+signal finished
+
 @onready var video: VideoStreamPlayer = $VideoStreamPlayer
 
 func _ready():
@@ -15,4 +17,5 @@ func _on_finished():
 	var tween = create_tween()
 	tween.tween_property($VideoStreamPlayer, "modulate:a", 0.0, 0.5)
 	await tween.finished
+	finished.emit()
 	queue_free()
