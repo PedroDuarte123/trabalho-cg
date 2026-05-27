@@ -8,18 +8,14 @@ const SAVE_SECTION := "player"
 @onready var player: CharacterBody2D = $Player
 
 var respawn_position: Vector2
-var _is_respawning := false
-
-var _death_overlay_rect: ColorRect
-
+const death_screen = preload("res://scenes/deathscreen.tscn")
 
 func _enter_tree() -> void:
 	add_to_group("game")
 
 
 func _ready() -> void:
-	_ensure_death_overlay()
-
+	
 	respawn_position = player.global_position
 	_load_checkpoint_if_any()
 
@@ -35,12 +31,9 @@ func set_checkpoint(new_respawn_position: Vector2) -> void:
 
 
 func _on_player_died() -> void:
-	if _is_respawning:
-		return
-	_is_respawning = true
-
+	var deathS = death_screen.instantiate()
+	get_tree().root.add_child(deathS)
 	_show_death_overlay(true)
-	await get_tree().create_timer(respawn_delay_seconds).timeout
 
 	if is_instance_valid(player):
 		if player.has_method("respawn_at"):
@@ -49,31 +42,11 @@ func _on_player_died() -> void:
 			player.global_position = respawn_position
 
 	_show_death_overlay(false)
-	_is_respawning = false
-
-
-func _ensure_death_overlay() -> void:
-	var layer := CanvasLayer.new()
-	layer.name = "DeathOverlay"
-	layer.layer = 100
-	add_child(layer)
-
-	_death_overlay_rect = ColorRect.new()
-	_death_overlay_rect.name = "Black"
-	_death_overlay_rect.color = Color.BLACK
-	_death_overlay_rect.visible = false
-	_death_overlay_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_death_overlay_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-	_death_overlay_rect.offset_left = 0
-	_death_overlay_rect.offset_top = 0
-	_death_overlay_rect.offset_right = 0
-	_death_overlay_rect.offset_bottom = 0
-	layer.add_child(_death_overlay_rect)
 
 
 func _show_death_overlay(visible: bool) -> void:
-	if _death_overlay_rect:
-		_death_overlay_rect.visible = visible
+	var deathS = death_screen.instantiate()
+	get_tree().root.add_child( deathS)
 
 
 func _load_checkpoint_if_any() -> void:
