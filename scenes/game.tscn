@@ -11,18 +11,18 @@
 [ext_resource type="PackedScene" uid="uid://c7e573bl2lhj2" path="res://scenes/player.tscn" id="7_n26xj"]
 [ext_resource type="Texture2D" uid="uid://cpwee5wkfjtga" path="res://background/FOREGROUND.png" id="8_0c7p4"]
 [ext_resource type="PackedScene" uid="uid://xepem5tyr1fu" path="res://scenes/flashlight_dummy.tscn" id="9_flashlight_dummy"]
-[ext_resource type="PackedScene" path="res://scenes/camera_intro_pan.tscn" id="22_camera_intro_pan"]
 [ext_resource type="Shader" uid="uid://bv2gj0mhmuuv3" path="res://shaders/fog.gdshader" id="10_trtic"]
 [ext_resource type="Texture2D" uid="uid://dq23lm66g84u7" path="res://sprites/Tiles.png" id="10_vtaks"]
 [ext_resource type="Texture2D" uid="uid://bkrxoxd36sduf" path="res://sprites/Salt.png" id="11_kvpfn"]
 [ext_resource type="Script" uid="uid://bxj8ipm64ggiq" path="res://scripts/danoplaceholder.gd" id="13_264po"]
 [ext_resource type="PackedScene" uid="uid://dlia186rsveop" path="res://scenes/plataforma.tscn" id="13_kvuet"]
-[ext_resource type="PackedScene" uid="uid://bp2oaxp0uj2rf" path="res://scenes/checkpoints.tscn" id="14_1kice"]
+[ext_resource type="PackedScene" uid="uid://cfpvoaio4756c" path="res://scenes/checkpoints.tscn" id="14_1kice"]
 [ext_resource type="Script" uid="uid://ccc24p2dyqf2h" path="res://scripts/gpu_particles_2d.gd" id="14_ca42v"]
 [ext_resource type="Shader" uid="uid://o8kiscgkax0i" path="res://shaders/foreground.gdshader" id="16_rysoc"]
 [ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="18_ssvqc"]
 [ext_resource type="PackedScene" uid="uid://dcrjxi7efeqyo" path="res://scenes/skeleton.tscn" id="21_5newe"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="23_game_manager"]
+[ext_resource type="PackedScene" uid="uid://dvxkiun4yoc8g" path="res://scenes/camera_intro_pan.tscn" id="22_camera_intro_pan"]
+[ext_resource type="Script" uid="uid://1838f4rv7vej" path="res://scripts/game_manager.gd" id="23_game_manager"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 3
@@ -1530,8 +1530,6 @@ sprite_frames = SubResource("SpriteFrames_o8ni1")
 autoplay = "default"
 frame_progress = 0.31777757
 
-[node name="CameraIntroPan" parent="." instance=ExtResource("22_camera_intro_pan")]
-
 [node name="LuzFogueira" type="PointLight2D" parent="Background Elements/Fogueira2" unique_id=1473284390]
 color = Color(0.9933472, 0.74738556, 0.5588134, 1)
 energy = 6.0
@@ -1540,6 +1538,8 @@ range_z_max = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_kvuet")
 texture_scale = 8.0
+
+[node name="CameraIntroPan" parent="." unique_id=1847975231 instance=ExtResource("22_camera_intro_pan")]
 
 [node name="Player" parent="." unique_id=476727846 instance=ExtResource("7_n26xj")]
 z_index = 1
