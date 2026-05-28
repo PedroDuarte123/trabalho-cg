@@ -3,12 +3,14 @@ class_name FlashlightDummy
 
 signal target_entered(target: Node2D)
 signal target_exited(target: Node2D)
+signal flashlight_toggled(is_on: bool) 
 
 @export var enabled: bool = false:
 	set(value):
 		enabled = value
 		_update_enabled()
-
+		flashlight_toggled.emit(value) 
+		
 @export_range(50.0, 2500.0, 10.0) var beam_length: float = 650.0:
 	set(value):
 		beam_length = value

@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b13xuid0ona31" path="res://shaders/idle.tres" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://guxpjyrb65si" path="res://shaders/jump.tres" id="4_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bnuvy440wiidg" path="res://shaders/running.tres" id="6_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://xepem5tyr1fu" path="res://scenes/flashlight_dummy.tscn" id="7_fjrip"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smehm"]
 resource_local_to_scene = true
@@ -299,3 +300,6 @@ limit_top = 0
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
+
+[node name="FlashlightDummy" parent="." unique_id=1374049123 instance=ExtResource("7_fjrip")]
+position = Vector2(25, -4)

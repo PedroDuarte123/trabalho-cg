@@ -20,6 +20,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var hitbox_espada_shape = $AreaDanoEspada/CollisionShape2D
 
 
+
+
 func _ready():
 	current_health = max_health
 	$AreaDanoEspada.body_entered.connect(_on_area_dano_espada_body_entered)
@@ -82,7 +84,7 @@ func _flip_direction():
 func _on_area_dano_espada_body_entered(body):
 	if body.is_in_group("player") and not is_dead:
 		if body.has_method("damage"):
-			body.damage() # Chama a sua função que pisca o player e atualiza os corações
+			body.damage(global_position) # Chama a sua função que pisca o player e atualiza os corações
 
 
 func _check_for_player():
