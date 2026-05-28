@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bxptui44tf71s"]
+
+[ext_resource type="Texture2D" uid="uid://ckxybk458uag" path="res://sprites/espinhos.png" id="1_mjig1"]
+[ext_resource type="Script" uid="uid://cvibcqibkpb4x" path="res://scripts/espinhos_area.gd" id="1_prhkh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_prhkh"]
+size = Vector2(199, 62)
+
+[node name="espinhos_area" type="Area2D" unique_id=1159526242]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_prhkh")
+
+[node name="collision" type="CollisionShape2D" parent="." unique_id=1491194139]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_prhkh")
+
+[node name="espinho" type="Sprite2D" parent="." unique_id=988065939]
+z_index = -1
+texture_repeat = 2
+texture = ExtResource("1_mjig1")
+region_enabled = true
+region_rect = Rect2(0, 0, 224, 64)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

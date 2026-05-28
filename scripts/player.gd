@@ -18,6 +18,17 @@ const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 var was_on_floor := true
 
+var invencivel := false
+
+# --- KNOCKBACK (novo) ---
+const KNOCKBACK_H:        float = 300.0
+const KNOCKBACK_V:        float = -400.0
+const KNOCKBACK_V_SIDE:   float = -200.0
+const KNOCKBACK_DURATION: float = 0.22
+const KNOCKBACK_FRICTION: float = 800.0
+var _knockback_timer: float = 0.0
+
+
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		velocity = Vector2.ZERO
@@ -27,37 +38,48 @@ func _physics_process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
-	if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
-		if Input.is_action_pressed("Down"):
-			position.y += 1
-		else:
-			velocity.y = JUMP_VELOCITY
-		
-	# Movement
-	var direction := Input.get_axis("Left", "Right")
-	if direction:
-		velocity.x = direction * SPEED
-		$AnimatedSprite2D.flip_h = direction < 0
+
+	# Knockback timer
+	if _knockback_timer > 0.0:
+		_knockback_timer -= delta
+		velocity.x = move_toward(velocity.x, 0.0, KNOCKBACK_FRICTION * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
+			if Input.is_action_pressed("Down"):
+				position.y += 1
+			else:
+				velocity.y = JUMP_VELOCITY
+			
+		# Movement
+		var direction := Input.get_axis("Left", "Right")
+		if direction:
+			velocity.x = direction * SPEED
+			$AnimatedSprite2D.flip_h = direction < 0
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 
 	# Animação
 	if not is_on_floor():
-		if was_on_floor:  # só chama play UMA vez, no momento que sai do chão
+		if was_on_floor:
 			$AnimatedSprite2D.play("Jumping")
 			$AnimatedSprite2D.offset.y = 0
 		was_on_floor = false
 	else:
 		was_on_floor = true
+		var direction := Input.get_axis("Left", "Right")
 		if direction != 0:
 			$AnimatedSprite2D.play("Running")
 			$AnimatedSprite2D.offset.y = 2
 		else:
 			$AnimatedSprite2D.play("Idle")
 			$AnimatedSprite2D.offset.y = 0
+			
+	for platforms in get_slide_collision_count():
+		var collision = get_slide_collision(platforms)
+		if collision.get_collider().has_method("has_collided_with"):
+			collision.get_collider().has_collided_with(collision, self)
 
 func _process(delta):
 	if ray.is_colliding():
@@ -73,14 +95,30 @@ func _process(delta):
 	else:
 		shadow.visible = false
 		
-func damage() -> void:
+func damage(damage_source_position: Vector2 = Vector2.ZERO) -> void:
 	if is_dead:
 		return
 	if health <= 0:
 		return
 		
+	if invencivel:
+		return
+
+	invencivel = true
+		
 	health -= 1
-	
+
+	# --- Knockback (novo) ---
+	if damage_source_position != Vector2.ZERO:
+		var dir := global_position - damage_source_position
+		if abs(dir.y) > abs(dir.x):
+			velocity.x = 0.0
+			velocity.y = KNOCKBACK_V
+		else:
+			velocity.x = sign(dir.x) * KNOCKBACK_H
+			velocity.y = KNOCKBACK_V_SIDE
+		_knockback_timer = KNOCKBACK_DURATION
+
 	#efeito piscar
 	var tween = get_tree().create_tween()
 	tween.tween_method(SetShader_BlinkIntensity, 1.0, 0.0, 0.4)
@@ -103,11 +141,16 @@ func damage() -> void:
 	#efeito luz final
 	await get_tree().create_timer(gpu_particles_2d.lifetime).timeout
 	point_light_2d.enabled = false;
+	
+	await get_tree().create_timer(0.3).timeout
+
+	invencivel = false
 
 
 func respawn_at(new_global_position: Vector2) -> void:
 	global_position = new_global_position
 	velocity = Vector2.ZERO
+	_knockback_timer = 0.0
 	reset_health()
 
 
@@ -136,8 +179,3 @@ func _update_health_ui_full() -> void:
 	
 func SetShader_BlinkIntensity(newValue: float):
 	animated_sprite_2d.material.set_shader_parameter("blink_intensity", newValue)
-	
-	
-		
-
-	

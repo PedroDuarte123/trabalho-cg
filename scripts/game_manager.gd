@@ -21,6 +21,9 @@ func _ready() -> void:
 		player.died.connect(_on_player_died)
 
 
+func get_last_checkpoint() -> Vector2:
+	return respawn_position
+
 func set_checkpoint(new_respawn_position: Vector2) -> void:
 	respawn_position = new_respawn_position
 	_save_checkpoint()
@@ -64,3 +67,4 @@ func _save_checkpoint() -> void:
 	config.set_value(SAVE_SECTION, "respawn_x", respawn_position.x)
 	config.set_value(SAVE_SECTION, "respawn_y", respawn_position.y)
 	config.save(SAVE_PATH)
+	
