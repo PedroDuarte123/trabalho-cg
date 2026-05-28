@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://b8mkc2yggmmhg"]
+
+[ext_resource type="Texture2D" uid="uid://dq23lm66g84u7" path="res://sprites/Tiles.png" id="1_rkcww"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rkcww"]
+polygon = PackedVector2Array(-55, 0, -55, 8, 56, 8, 56, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jb62"]
+size = Vector2(124, 22)
+
+[node name="Plataforma" type="AnimatableBody2D" unique_id=664570873]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=39326444]
+texture = ExtResource("1_rkcww")
+region_enabled = true
+region_rect = Rect2(65, 250, 125, 24)
+metadata/_edit_lock_ = true
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D" unique_id=1950039821]
+position = Vector2(0, -1)
+occluder = SubResource("OccluderPolygon2D_rkcww")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1340743992]
+visible = false
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_4jb62")
+one_way_collision = true
+metadata/_edit_lock_ = true

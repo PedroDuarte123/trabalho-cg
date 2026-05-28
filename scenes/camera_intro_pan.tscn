@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dvxkiun4yoc8g"]
+
+[ext_resource type="Script" uid="uid://c2cvbfolkkeot" path="res://scripts/camera_intro_pan.gd" id="1_camera_intro_pan"]
+
+[node name="CameraIntroPan" type="Node2D" unique_id=873266839]
+script = ExtResource("1_camera_intro_pan")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=945406891]
+
+[node name="Start" type="Marker2D" parent="." unique_id=172937255]
+
+[node name="End" type="Marker2D" parent="." unique_id=838496400]
