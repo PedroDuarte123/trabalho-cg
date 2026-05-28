@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bqfc8t8lbl5mw" path="res://sprites/Campfire sheet.png" id="7_dinhu"]
 [ext_resource type="PackedScene" uid="uid://c7e573bl2lhj2" path="res://scenes/player.tscn" id="7_n26xj"]
 [ext_resource type="Texture2D" uid="uid://cpwee5wkfjtga" path="res://background/FOREGROUND.png" id="8_0c7p4"]
+[ext_resource type="PackedScene" uid="uid://dvxkiun4yoc8g" path="res://scenes/camera_intro_pan.tscn" id="9_bhx41"]
 [ext_resource type="Shader" uid="uid://bv2gj0mhmuuv3" path="res://shaders/fog.gdshader" id="10_trtic"]
 [ext_resource type="Texture2D" uid="uid://dq23lm66g84u7" path="res://sprites/Tiles.png" id="10_vtaks"]
 [ext_resource type="Texture2D" uid="uid://bthq6rh5jkrm" path="res://sprites/Village Props.png" id="11_37s47"]
@@ -2221,9 +2222,11 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_kvuet")
 texture_scale = 8.0
 
+[node name="CameraIntroPan" parent="." unique_id=873266839 instance=ExtResource("9_bhx41")]
+
 [node name="Player" parent="." unique_id=476727846 instance=ExtResource("7_n26xj")]
 z_index = 1
-position = Vector2(389, 482)
+position = Vector2(392, 493)
 
 [node name="Limites" type="StaticBody2D" parent="." unique_id=1013707754]
 position = Vector2(153, 638)
@@ -2281,7 +2284,9 @@ require_flashlight = true
 
 [node name="moving_platform3" parent="Plataformas móveis" unique_id=210918778 instance=ExtResource("11_e1j6l")]
 position = Vector2(7083, 509)
+distance_multiplier = 5
 move_horizontal = false
+vertical_direction = -1
 require_flashlight = true
 
 [node name="moving_platform4" parent="Plataformas móveis" unique_id=1208018113 instance=ExtResource("11_e1j6l")]

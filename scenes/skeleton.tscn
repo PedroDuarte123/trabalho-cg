@@ -370,8 +370,10 @@ script = ExtResource("1_ssl1b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1430132720]
 scale = Vector2(1.8541666, 1.78125)
 sprite_frames = SubResource("SpriteFrames_xp773")
-animation = &"Walk"
+animation = &"Hurt"
 autoplay = "Idle"
+frame = 4
+frame_progress = 0.43118814
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=780892134]
 position = Vector2(-6, 16)
@@ -385,6 +387,10 @@ target_position = Vector2(61, 0)
 position = Vector2(-6, 16)
 target_position = Vector2(86, 0)
 collision_mask = 2
+
+[node name="CliffRayCast2D" type="RayCast2D" parent="." unique_id=559829614]
+position = Vector2(17, 28)
+target_position = Vector2(0, 54)
 
 [node name="AreaDanoEspada" type="Area2D" parent="." unique_id=1949276526]
 collision_mask = 2
