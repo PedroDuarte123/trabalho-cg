@@ -17,6 +17,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var wall_raycast = $WallRayCast2D
 @onready var player_raycast = $PlayerRayCast2D
+@onready var cliff_raycast = $CliffRayCast2D
 @onready var hitbox_espada_shape = $AreaDanoEspada/CollisionShape2D
 
 
@@ -65,7 +66,13 @@ func _patrol_state():
 		# Só inverte a direção se o objeto NÃO estiver no grupo "Player"
 		if collider != null and not collider.is_in_group("Player"):
 			_flip_direction()
-
+	
+	if not cliff_raycast.is_colliding():
+		var collider = cliff_raycast.get_collider()
+		
+		# Só inverte a direção se o "cliff_raycast" nao estiver colidindo com nada do ambiente
+		_flip_direction()
+	
 	velocity.x = direction * speed
 	anim_sprite.play("Walk")
 	
@@ -75,6 +82,7 @@ func _flip_direction():
 	anim_sprite.flip_h = direction < 0
 	wall_raycast.target_position.x *= -1
 	player_raycast.target_position.x *= -1
+	cliff_raycast.position.x *= -1
 	
 	# Move a área do dano para frente ou para trás do esqueleto dependendo do lado que ele olha
 	hitbox_espada_shape.position.x *= -1
@@ -102,7 +110,7 @@ func _check_for_player():
 			#     collider.take_damage(1)
 
 # Função para receber dano (chame esta função a partir do ataque do seu jogador)
-func take_damage(amount: int = 1):
+func damage(amount: int = 1):
 	if is_dead:
 		return
 		
