@@ -4,9 +4,21 @@
 [ext_resource type="Texture2D" uid="uid://cm4b6d7gvqixo" path="res://character/cast_shadow.png" id="2_qlg0r"]
 [ext_resource type="Shader" uid="uid://irfh73610qut" path="res://shaders/blink.gdshader" id="3_fjrip"]
 [ext_resource type="Texture2D" uid="uid://b13xuid0ona31" path="res://shaders/idle.tres" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://bnjui80ebeya8" path="res://character/attack1.png" id="4_4r5pv"]
 [ext_resource type="Texture2D" uid="uid://guxpjyrb65si" path="res://shaders/jump.tres" id="4_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://d0j7ddi835i7s" path="res://character/attack2.png" id="5_60mlk"]
+[ext_resource type="Texture2D" uid="uid://bpea7xe0twfvk" path="res://character/attack3.png" id="6_i4ail"]
 [ext_resource type="Texture2D" uid="uid://bnuvy440wiidg" path="res://shaders/running.tres" id="6_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://byqvvfnv5fahf" path="res://character/attack4.png" id="7_a38lo"]
 [ext_resource type="PackedScene" uid="uid://xepem5tyr1fu" path="res://scenes/flashlight_dummy.tscn" id="7_fjrip"]
+[ext_resource type="Texture2D" uid="uid://b6mxfwkg63n01" path="res://character/attack5.png" id="8_4ni07"]
+[ext_resource type="Texture2D" uid="uid://0ohpomado66w" path="res://character/attack6.png" id="9_l71n6"]
+[ext_resource type="Texture2D" uid="uid://cn7qqc3ovam5j" path="res://character/attack7.png" id="10_ke2ow"]
+[ext_resource type="Texture2D" uid="uid://df7422jsw5a58" path="res://character/attack8.png" id="11_ujl30"]
+[ext_resource type="Texture2D" uid="uid://dni3xiltak423" path="res://character/attack9.png" id="12_31cv2"]
+[ext_resource type="Texture2D" uid="uid://yc6dhtrvm3p0" path="res://character/attack10.png" id="13_pf23h"]
+[ext_resource type="Texture2D" uid="uid://c7jib7sbr11" path="res://character/attack11.png" id="14_dt7fs"]
+[ext_resource type="Texture2D" uid="uid://vmmu4g7s6kwe" path="res://character/pray.png" id="17_wqfne"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_smehm"]
 resource_local_to_scene = true
@@ -94,6 +106,30 @@ region = Rect2(384, 0, 64, 64)
 atlas = ExtResource("4_qlg0r")
 region = Rect2(448, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
+atlas = ExtResource("17_wqfne")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_487ah"]
+atlas = ExtResource("17_wqfne")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md1ol"]
+atlas = ExtResource("17_wqfne")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bj30b"]
+atlas = ExtResource("17_wqfne")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc3p3"]
+atlas = ExtResource("17_wqfne")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hax0n"]
+atlas = ExtResource("17_wqfne")
+region = Rect2(320, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ujl30"]
 atlas = ExtResource("6_tuyoq")
 region = Rect2(0, 0, 64, 64)
@@ -120,6 +156,44 @@ region = Rect2(320, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4r5pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_60mlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_i4ail")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_a38lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4ni07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_l71n6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ke2ow")
+}, {
+"duration": 2.0,
+"texture": ExtResource("11_ujl30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_31cv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_pf23h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_dt7fs")
+}],
+"loop": true,
+"name": &"Attack",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_fjrip")
@@ -189,6 +263,29 @@ animations = [{
 "loop": true,
 "name": &"Jumping",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl8cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_487ah")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_md1ol")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_bj30b")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_jc3p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hax0n")
+}],
+"loop": false,
+"name": &"Pray",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -268,7 +365,9 @@ material = SubResource("ShaderMaterial_smehm")
 position = Vector2(3.8146973e-06, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"Jumping"
+animation = &"Pray"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1018653463]
 position = Vector2(0.06251526, 12.25)

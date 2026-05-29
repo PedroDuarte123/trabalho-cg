@@ -16,6 +16,11 @@ func _process(_delta: float) -> void:
 	if not _player_in_range:
 		return
 	if Input.is_action_just_pressed("Interact"):
+		var player = get_tree().get_first_node_in_group("player")
+		player.is_praying = true
+		player.get_node("AnimatedSprite2D").play("Pray")
+		await player.get_node("AnimatedSprite2D").animation_finished
+		player.is_praying = false
 		var game := get_tree().get_first_node_in_group("game")
 		if game and game.has_method("set_checkpoint"):
 			game.set_checkpoint(global_position + respawn_offset)

@@ -17,7 +17,7 @@ var is_dead := false
 const SPEED = 400.0
 const JUMP_VELOCITY = -400.0
 var was_on_floor := true
-
+var is_praying = false
 var invencivel := false
 
 # --- KNOCKBACK (novo) ---
@@ -57,6 +57,11 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.flip_h = direction < 0
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+			
+	if is_praying:
+		velocity = Vector2.ZERO
+		move_and_slide()
+		return			
 
 	move_and_slide()
 
