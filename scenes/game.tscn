@@ -2,8 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://kt58bk5ar12c" path="res://sprites/leafspritesheet.png" id="1_ir15t"]
 [ext_resource type="Texture2D" uid="uid://g72vhpdqtf1y" path="res://background/BACKGROUND_4.png" id="1_krunx"]
+[ext_resource type="AudioStream" uid="uid://c6vovutcu7jar" path="res://audio/Hunter_s-Dream-SIE-Sound-Team-_youtube_.wav" id="2_qnb83"]
 [ext_resource type="Texture2D" uid="uid://cwbno8w3aoqxd" path="res://background/BACKGROUND_3.png" id="2_x8pbt"]
 [ext_resource type="Texture2D" uid="uid://cwip7ltipl1y7" path="res://background/BACKGROUND_2.png" id="3_lfna2"]
+[ext_resource type="AudioStream" uid="uid://2cy6snht4sb6" path="res://audio/noite.wav" id="3_sww3w"]
 [ext_resource type="Texture2D" uid="uid://hmpqw2ghmsia" path="res://background/BACKGROUND_1.png" id="4_m26gy"]
 [ext_resource type="Texture2D" uid="uid://qiujxjpex6gj" path="res://background/BACKGROUND_0.png" id="5_2b28d"]
 [ext_resource type="Texture2D" uid="uid://rliq4jl1x0dd" path="res://background/Bat_Sprite_Sheet.png" id="6_5w37d"]
@@ -398,6 +400,9 @@ gradient = SubResource("Gradient_dinhu")
 fill = 1
 fill_from = Vector2(0.47008547, 0.50769234)
 fill_to = Vector2(0.13162394, 0.104273506)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bhx41"]
+b = Vector2(-1.9682617, 355.4419)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4i1vo"]
 normal = Vector2(0.9998817, -0.015382796)
@@ -2072,6 +2077,16 @@ shader = ExtResource("16_rysoc")
 [node name="Game" type="Node2D" unique_id=1006839918]
 script = ExtResource("23_game_manager")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=598703618]
+stream = ExtResource("2_qnb83")
+volume_db = 1.0
+autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1712043802]
+stream = ExtResource("3_sww3w")
+volume_db = -5.0
+autoplay = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1727302961]
 environment = SubResource("Environment_kvuet")
 
@@ -2231,12 +2246,12 @@ position = Vector2(392, 493)
 [node name="Limites" type="StaticBody2D" parent="." unique_id=1013707754]
 position = Vector2(153, 638)
 
-[node name="WordLimitCollision" type="CollisionShape2D" parent="Limites" unique_id=667420130]
-position = Vector2(1468, -167)
-shape = SubResource("WorldBoundaryShape2D_4i1vo")
+[node name="WordLimitCollision1" type="CollisionShape2D" parent="Limites" unique_id=777158737]
+position = Vector2(66, -479)
+shape = SubResource("SegmentShape2D_bhx41")
 
 [node name="WordLimitCollision2" type="CollisionShape2D" parent="Limites" unique_id=1761105522]
-position = Vector2(7474, -227)
+position = Vector2(3417, -475)
 rotation = -3.1415927
 shape = SubResource("WorldBoundaryShape2D_4i1vo")
 
