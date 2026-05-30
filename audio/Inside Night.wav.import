@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bingcgxk3mjw1"
+path="res://.godot/imported/Inside Night.wav-8db11d0f6ba948634bf4e3a7fc7bbed7.sample"
+
+[deps]
+
+source_file="res://audio/Inside Night.wav"
+dest_files=["res://.godot/imported/Inside Night.wav-8db11d0f6ba948634bf4e3a7fc7bbed7.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
