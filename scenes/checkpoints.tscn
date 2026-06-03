@@ -2,7 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://b35ps7npavk53" path="res://sprites/TX FX Torch Flame.png" id="1_5t7tx"]
 [ext_resource type="Texture2D" uid="uid://bxdme6w5im65p" path="res://sprites/TX Village Props.png" id="2_a0lbf"]
-[ext_resource type="Script" path="res://scripts/checkpoint.gd" id="3_checkpoint_script"]
+[ext_resource type="Script" uid="uid://b1yd7sb10fjo3" path="res://scripts/checkpoint.gd" id="3_checkpoint_script"]
+[ext_resource type="Texture2D" uid="uid://4861sps2o0ix" path="res://UI/letter_e.png" id="4_frfta"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_checkpoint"]
 radius = 60.0
@@ -288,8 +289,10 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1467628605]
 shape = SubResource("CircleShape2D_checkpoint")
+metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1608838818]
+visible = false
 modulate = Color(1.5148153, 0.9756687, 3.1681983, 1)
 position = Vector2(-0.99999994, -71.00001)
 scale = Vector2(0.857143, 0.8571429)
@@ -312,3 +315,9 @@ occluder = SubResource("OccluderPolygon2D_5t7tx")
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_a0lbf")
 metadata/_edit_lock_ = true
+
+[node name="Key" type="Sprite2D" parent="." unique_id=711772225]
+visible = false
+position = Vector2(0, -94)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_frfta")
