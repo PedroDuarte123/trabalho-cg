@@ -7,7 +7,7 @@ script = ExtResource("1_flashlight_dummy")
 
 [node name="Light" type="PointLight2D" parent="." unique_id=393455251]
 color = Color(1, 0.98, 0.9, 1)
-energy = 8.0
+energy = 6.0
 shadow_enabled = true
 
 [node name="BeamArea" type="Area2D" parent="." unique_id=184074700]
@@ -15,4 +15,4 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="BeamCollision" type="CollisionPolygon2D" parent="BeamArea" unique_id=1092850854]
-polygon = PackedVector2Array(0, -10, 650, -150, 650, 150, 0, 10)
+polygon = PackedVector2Array(0, -10, 450, -100, 450, 100, 0, 10)

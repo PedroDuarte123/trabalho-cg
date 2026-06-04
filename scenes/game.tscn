@@ -2682,6 +2682,7 @@ position = Vector2(10887.595, 197.418)
 
 [node name="Skeleton6" parent="Enemies" unique_id=804841180 instance=ExtResource("21_5newe")]
 position = Vector2(1535, 377)
+light_armor_debug_log = true
 
 [node name="Skeleton7" parent="Enemies" unique_id=1491214252 instance=ExtResource("21_5newe")]
 position = Vector2(12451.826, 395.5015)

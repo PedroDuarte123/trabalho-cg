@@ -11,13 +11,13 @@ signal flashlight_toggled(is_on: bool)
 		_update_enabled()
 		flashlight_toggled.emit(value) 
 		
-@export_range(50.0, 2500.0, 10.0) var beam_length: float = 650.0:
+@export_range(50.0, 2500.0, 10.0) var beam_length: float = 250.0:
 	set(value):
 		beam_length = value
 		_update_beam_geometry()
 		_update_light_texture_scale()
 
-@export_range(1.0, 179.0, 1.0) var beam_angle_deg: float = 35.0:
+@export_range(1.0, 179.0, 1.0) var beam_angle_deg: float = 25.0:
 	set(value):
 		beam_angle_deg = value
 		_update_beam_geometry()
@@ -33,7 +33,7 @@ signal flashlight_toggled(is_on: bool)
 		radial_falloff = value
 		_update_light_texture()
 
-@export var target_collision_mask: int = 1:
+@export var target_collision_mask: int = 3:
 	set(value):
 		target_collision_mask = value
 		if is_instance_valid(_beam_area):

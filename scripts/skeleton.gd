@@ -1,5 +1,12 @@
 extends CharacterBody2D
 
+@export_group("Light Armor")
+@export var has_light_armor: bool = true
+@export_range(0.1, 999.0, 0.1) var light_armor_max: float = 3.0
+@export_range(0.0, 999.0, 0.1) var light_armor_drain_per_second: float = 1.2
+@export var light_armor_debug_log: bool = false
+@export_range(0.05, 10.0, 0.05) var light_armor_debug_interval: float = 0.5
+
 # Configurações do Inimigo
 @export var speed: float = 50.0
 @export var max_health: int = 2
@@ -20,16 +27,50 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var cliff_raycast = $CliffRayCast2D
 @onready var hitbox_espada_shape = $AreaDanoEspada/CollisionShape2D
 
+var _light_armor: LightArmor = null
+var _stunned_by_light: bool = false
+
 
 
 
 func _ready():
 	current_health = max_health
+	_setup_light_armor()
 	$AreaDanoEspada.body_entered.connect(_on_area_dano_espada_body_entered)
+
+
+func _setup_light_armor() -> void:
+	if not has_light_armor:
+		return
+
+	var armor := LightArmor.new()
+	armor.max_armor = light_armor_max
+	armor.drain_per_second = light_armor_drain_per_second
+	armor.debug_log = light_armor_debug_log
+	armor.debug_log_interval = light_armor_debug_interval
+	armor.lit_changed.connect(_on_light_armor_lit_changed)
+	add_child(armor)
+	_light_armor = armor
+
+
+func _on_light_armor_lit_changed(is_lit: bool) -> void:
+	# Enquanto estiver iluminado, o esqueleto fica parado.
+	_stunned_by_light = is_lit
+	if _stunned_by_light:
+		is_attacking = false
+		hitbox_espada_shape.disabled = true
 
 
 func _physics_process(delta):
 	if is_dead:
+		return
+
+	if _stunned_by_light:
+		# Ainda aplica gravidade, mas não patrulha nem ataca.
+		if not is_on_floor():
+			velocity.y += gravity * delta
+		velocity.x = 0
+		move_and_slide()
 		return
 		
 	# Aplicar gravidade
@@ -112,6 +153,8 @@ func _check_for_player():
 # Função para receber dano (chame esta função a partir do ataque do seu jogador)
 func damage(amount: int = 1):
 	if is_dead:
+		return
+	if _light_armor != null and _light_armor.is_intact():
 		return
 		
 	current_health -= amount
