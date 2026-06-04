@@ -4,10 +4,11 @@
 
 [node name="FlashlightDummy" type="Node2D" unique_id=1374049123]
 script = ExtResource("1_flashlight_dummy")
+debug_draw = false
 
 [node name="Light" type="PointLight2D" parent="." unique_id=393455251]
 color = Color(1, 0.98, 0.9, 1)
-energy = 6.0
+energy = 50.0
 shadow_enabled = true
 
 [node name="BeamArea" type="Area2D" parent="." unique_id=184074700]
