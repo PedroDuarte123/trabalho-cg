@@ -364,7 +364,7 @@ size = Vector2(18, 66)
 size = Vector2(88, 31)
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=903582782 groups=["Enemies"]]
-collision_layer = 2
+collision_layer = 8
 script = ExtResource("1_ssl1b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1430132720]
