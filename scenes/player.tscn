@@ -190,7 +190,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("14_dt7fs")
 }],
-"loop": true,
+"loop": false,
 "name": &"Attack",
 "speed": 10.0
 }, {
@@ -346,6 +346,9 @@ fill = 1
 fill_from = Vector2(0.47008547, 0.50769234)
 fill_to = Vector2(0.13162394, 0.104273506)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4r5pv"]
+size = Vector2(46, 98)
+
 [node name="Player" type="CharacterBody2D" unique_id=476727846 groups=["Player", "player"]]
 collision_layer = 2
 collision_mask = 5
@@ -365,9 +368,9 @@ material = SubResource("ShaderMaterial_smehm")
 position = Vector2(3.8146973e-06, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"Pray"
+animation = &"Attack"
 frame = 5
-frame_progress = 1.0
+frame_progress = 0.23207843
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1018653463]
 position = Vector2(0.06251526, 12.25)
@@ -403,3 +406,16 @@ position_smoothing_speed = 4.0
 [node name="FlashlightDummy" parent="." unique_id=1374049123 instance=ExtResource("7_fjrip")]
 position = Vector2(25, -4)
 debug_draw = true
+
+[node name="AreaAtaque" type="Area2D" parent="." unique_id=2127601578]
+visibility_layer = 9
+collision_mask = 9
+
+[node name="CollisionAtaque" type="CollisionShape2D" parent="AreaAtaque" unique_id=50728429]
+visibility_layer = 9
+position = Vector2(30, -14)
+shape = SubResource("RectangleShape2D_4r5pv")
+disabled = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="AreaAtaque" to="." method="_on_area_ataque_body_entered"]

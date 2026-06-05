@@ -16,6 +16,7 @@ var current_health: int
 var direction: int = 1 # 1 para direita, -1 para esquerda
 var is_attacking: bool = false
 var is_dead: bool = false
+var is_hurt: bool = false
 
 # Gravidade (pega a configuração padrão do projeto)
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -72,7 +73,14 @@ func _physics_process(delta):
 		velocity.x = 0
 		move_and_slide()
 		return
-		
+	
+	if is_hurt:
+		if not is_on_floor():
+			velocity.y += gravity * delta
+		velocity.x = 0
+		move_and_slide()
+		return # Impede de patrulhar ou atacar enquanto sofre dano
+	
 	# Aplicar gravidade
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -152,7 +160,7 @@ func _check_for_player():
 
 # Função para receber dano (chame esta função a partir do ataque do seu jogador)
 func damage(amount: int = 1):
-	if is_dead:
+	if is_dead or is_hurt:
 		return
 	if _light_armor != null and _light_armor.is_intact():
 		return
@@ -164,7 +172,13 @@ func damage(amount: int = 1):
 	else:
 		# Toca uma animação de sofrer dano (se houver) para dar feedback visual
 		if anim_sprite.sprite_frames.has_animation("Hurt"):
+			is_hurt = true
+			velocity.x = 0 # Para o movimento imediatamente
 			anim_sprite.play("Hurt")
+			
+			# Espera a animação "Hurt" terminar antes de voltar a patrulhar
+			await anim_sprite.animation_finished
+			is_hurt = false
 
 func die():
 	is_dead = true
