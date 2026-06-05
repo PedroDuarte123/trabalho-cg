@@ -9,8 +9,9 @@ signal died
 @onready var lifebar = get_tree().get_first_node_in_group("lifebar")
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 @onready var point_light_2d: PointLight2D = $GPUParticles2D/PointLight2D
+@onready var collision_ataque: CollisionShape2D = $AreaAtaque/CollisionAtaque
 
-
+var is_attacking := false
 const MAX_HEALTH := 3
 var health := MAX_HEALTH
 var is_dead := false
@@ -36,26 +37,39 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# Gravity
+	# --- CONTROLE DE FRAMES DE COLISÃO EM SEGUNDO PLANO ---
+	# Monitora os frames sem bloquear a física ou os comandos de andar
+	if is_attacking and animated_sprite_2d.animation == "Attack":
+		if animated_sprite_2d.frame in [5, 6, 7]:
+			collision_ataque.disabled = false
+		else:
+			collision_ataque.disabled = true
+	else:
+		if collision_ataque:
+			collision_ataque.disabled = true
+
+	# --- GRAVIDADE ---
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	# Knockback timer
+	# --- TIMERS / KNOCKBACK ---
 	if _knockback_timer > 0.0:
 		_knockback_timer -= delta
 		velocity.x = move_toward(velocity.x, 0.0, KNOCKBACK_FRICTION * delta)
 	else:
+		# Pulo e drop de plataforma (Funciona mesmo atacando!)
 		if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
 			if Input.is_action_pressed("Down"):
 				position.y += 1
 			else:
 				velocity.y = JUMP_VELOCITY
 			
-		# Movement
+		# Movimentação Horizontal (Livre para andar e virar enquanto ataca!)
 		var direction := Input.get_axis("Left", "Right")
 		if direction:
 			velocity.x = direction * SPEED
-			$AnimatedSprite2D.flip_h = direction < 0
+			animated_sprite_2d.flip_h = direction < 0
+			$AreaAtaque.scale.x = -1 if direction < 0 else 1
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			
@@ -64,10 +78,15 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return			
 
+	# Aplica o movimento final no mundo
 	move_and_slide()
 
-	# Animação
-	if not is_on_floor():
+	# --- SISTEMA DE ANIMAÇÃO INTELIGENTE ---
+	# Se estiver atacando, a animação de ataque tem prioridade na tela.
+	# As outras animações só voltam a rodar quando o ataque terminar.
+	if is_attacking:
+		pass 
+	elif not is_on_floor():
 		if was_on_floor:
 			$AnimatedSprite2D.play("Jumping")
 			$AnimatedSprite2D.offset.y = 0
@@ -82,6 +101,7 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.play("Idle")
 			$AnimatedSprite2D.offset.y = 0
 			
+	# Colisões extras com plataformas
 	for platforms in get_slide_collision_count():
 		var collision = get_slide_collision(platforms)
 		if collision.get_collider().has_method("has_collided_with"):
@@ -100,7 +120,17 @@ func _process(delta):
 			shadow.visible = false
 	else:
 		shadow.visible = false
-		
+
+func _unhandled_input(event: InputEvent) -> void:
+	# Detecta o clique esquerdo do mouse
+	if event.is_action_pressed("Attack") and not is_attacking and not is_dead and not is_praying:
+		ataque_player()
+
+func ataque_player() -> void:
+	is_attacking = true
+	animated_sprite_2d.play("Attack")
+	animated_sprite_2d.offset.y = 0 
+
 func damage(damage_source_position: Vector2 = Vector2.ZERO) -> void:
 	if is_dead:
 		return
@@ -185,3 +215,14 @@ func _update_health_ui_full() -> void:
 	
 func SetShader_BlinkIntensity(newValue: float):
 	animated_sprite_2d.material.set_shader_parameter("blink_intensity", newValue)
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite_2d.animation == "Attack":
+		is_attacking = false
+		collision_ataque.disabled = true # Garante que desliga a colisão após o ataque
+
+
+func _on_area_ataque_body_entered(body: Node2D) -> void:
+	if body.has_method("damage") and body != self:
+		body.damage(1)
