@@ -19,6 +19,7 @@ const JUMP_VELOCITY = -400.0
 var was_on_floor := true
 var is_praying = false
 var invencivel := false
+var moedas = 0
 
 # --- KNOCKBACK (novo) ---
 const KNOCKBACK_H:        float = 300.0
