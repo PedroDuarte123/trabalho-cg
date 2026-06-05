@@ -7,6 +7,11 @@ class_name CameraIntroPan
 @export_range(0.1, 30.0, 0.1) var duration: float = 5.0
 @export_range(0.0, 30.0, 0.1) var hold_end: float = 0.25
 
+@export var override_start_y: bool = false
+@export var start_y: float = 0.0
+@export var override_end_y: bool = false
+@export var end_y: float = 0.0
+
 @export var player_group: StringName = &"player"
 @export var player_camera_path: NodePath = NodePath("Camera2D")
 @export var player_animated_sprite_path: NodePath = NodePath("AnimatedSprite2D")
@@ -154,7 +159,11 @@ func _compute_start_position(return_camera: Camera2D) -> Vector2:
 	if bounds.is_empty():
 		return _start_marker.global_position
 
-	var cam_y := return_camera.global_position.y if is_instance_valid(return_camera) else _start_marker.global_position.y
+	var cam_y: float
+	if override_start_y:
+		cam_y = start_y
+	else:
+		cam_y = return_camera.global_position.y if is_instance_valid(return_camera) else _start_marker.global_position.y
 	return Vector2(_fit_camera_center_x(bounds[0], bounds[1], return_camera), cam_y)
 
 func _compute_end_position(return_camera: Camera2D) -> Vector2:
@@ -165,7 +174,11 @@ func _compute_end_position(return_camera: Camera2D) -> Vector2:
 	if bounds.is_empty():
 		return _end_marker.global_position
 
-	var cam_y := return_camera.global_position.y if is_instance_valid(return_camera) else _end_marker.global_position.y
+	var cam_y: float
+	if override_end_y:
+		cam_y = end_y
+	else:
+		cam_y = return_camera.global_position.y if is_instance_valid(return_camera) else _end_marker.global_position.y
 	return Vector2(_fit_camera_center_x(bounds[1], bounds[0], return_camera), cam_y)
 
 func _fit_camera_center_x(target_edge_x: float, other_edge_x: float, return_camera: Camera2D) -> float:
