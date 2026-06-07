@@ -33,7 +33,7 @@ signal flashlight_toggled(is_on: bool)
 		radial_falloff = value
 		_update_light_texture()
 
-@export var target_collision_mask: int = 3:
+@export var target_collision_mask: int = 8:
 	set(value):
 		target_collision_mask = value
 		if is_instance_valid(_beam_area):
