@@ -2713,4 +2713,4 @@ position = Vector2(13876, 323)
 [node name="coins" type="Node2D" parent="." unique_id=1784960793]
 
 [node name="coin2" parent="coins" unique_id=1155896230 instance=ExtResource("13_sgl2t")]
-position = Vector2(803, 456)
+position = Vector2(803, 453)

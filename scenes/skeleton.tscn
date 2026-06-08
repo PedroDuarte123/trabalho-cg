@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://biaokh6g6a0oj" path="res://Enemies/Skeleton/Skeleton_01_White_Hurt.png" id="3_ssl1b"]
 [ext_resource type="Texture2D" uid="uid://bs5hews7ahiio" path="res://Enemies/Skeleton/Skeleton_01_White_Idle.png" id="4_w4hcs"]
 [ext_resource type="Texture2D" uid="uid://bx0qf6avv1pwd" path="res://Enemies/Skeleton/Skeleton_01_White_Walk.png" id="6_ssl1b"]
+[ext_resource type="Texture2D" uid="uid://cgm2xubqcqt14" path="res://sprites/shieldbroken.png" id="7_w4hcs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_haw2w"]
 atlas = ExtResource("1_bnirc")
@@ -360,8 +361,107 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bnirc"]
 size = Vector2(18, 66)
 
+[sub_resource type="Gradient" id="Gradient_w4hcs"]
+colors = PackedColorArray(9.022351, 9.853209, 18.892157, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fjrip"]
+gradient = SubResource("Gradient_w4hcs")
+
+[sub_resource type="CurveTexture" id="CurveTexture_tuyoq"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_haw2w"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector3(-0.5, -0.5, 0)
+initial_velocity_min = 201.09
+initial_velocity_max = 400.0
+gravity = Vector3(0, 700, 0)
+damping_min = 100.00001
+damping_max = 800.00006
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_fjrip")
+emission_curve = SubResource("CurveTexture_tuyoq")
+
+[sub_resource type="Gradient" id="Gradient_dinhu"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i0f3v"]
+gradient = SubResource("Gradient_dinhu")
+fill = 1
+fill_from = Vector2(0.47008547, 0.50769234)
+fill_to = Vector2(0.13162394, 0.104273506)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5pgwy"]
-size = Vector2(88, 31)
+size = Vector2(80, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luons"]
+atlas = ExtResource("7_w4hcs")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cqqj"]
+atlas = ExtResource("7_w4hcs")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff1pb"]
+atlas = ExtResource("7_w4hcs")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kru4l"]
+atlas = ExtResource("7_w4hcs")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8scli"]
+atlas = ExtResource("7_w4hcs")
+region = Rect2(256, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1hfb"]
+atlas = ExtResource("7_w4hcs")
+region = Rect2(320, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxd0p"]
+atlas = ExtResource("7_w4hcs")
+region = Rect2(384, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5eys"]
+atlas = ExtResource("7_w4hcs")
+region = Rect2(448, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4aoad"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luons")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cqqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff1pb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kru4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8scli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1hfb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxd0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5eys")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
 
 [node name="Skeleton" type="CharacterBody2D" unique_id=903582782 groups=["Enemies"]]
 collision_layer = 8
@@ -390,10 +490,36 @@ collision_mask = 2
 position = Vector2(17, 28)
 target_position = Vector2(0, 54)
 
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1170813191]
+position = Vector2(0, -9)
+emitting = false
+amount = 30
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_haw2w")
+
+[node name="PointLight2D" type="PointLight2D" parent="GPUParticles2D" unique_id=1675210245]
+position = Vector2(-7, -4)
+scale = Vector2(1.875, 1.875)
+enabled = false
+color = Color(0.7486092, 0.54822516, 1.1008143, 1)
+energy = 1.5
+texture = SubResource("GradientTexture2D_i0f3v")
+texture_scale = 1.5
+
 [node name="AreaDanoEspada" type="Area2D" parent="." unique_id=1949276526]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDanoEspada" unique_id=1182350820]
-position = Vector2(49, 5.5)
+position = Vector2(45, 5.5)
 shape = SubResource("RectangleShape2D_5pgwy")
 disabled = true
+
+[node name="ShieldBrokenEffect" type="AnimatedSprite2D" parent="." unique_id=2015391774]
+modulate = Color(2.8157141, 2.8157141, 2.8157141, 1)
+position = Vector2(-6, 9)
+scale = Vector2(2.0624998, 2.0624998)
+sprite_frames = SubResource("SpriteFrames_4aoad")
+frame = 8
+frame_progress = 1.0

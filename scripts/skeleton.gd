@@ -6,6 +6,9 @@ extends CharacterBody2D
 @export_range(0.0, 999.0, 0.1) var light_armor_drain_per_second: float = 1.2
 @export var light_armor_debug_log: bool = false
 @export_range(0.05, 10.0, 0.05) var light_armor_debug_interval: float = 0.5
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+
+
 
 # Configurações do Inimigo
 @export var speed: float = 50.0
@@ -175,6 +178,8 @@ func damage(amount: int = 1):
 			is_hurt = true
 			velocity.x = 0 # Para o movimento imediatamente
 			anim_sprite.play("Hurt")
+			gpu_particles_2d.restart();
+			gpu_particles_2d.emitting = true;
 			
 			# Espera a animação "Hurt" terminar antes de voltar a patrulhar
 			await anim_sprite.animation_finished
@@ -186,6 +191,8 @@ func die():
 	
 	if anim_sprite.sprite_frames.has_animation("Die"):
 		anim_sprite.play("Die")
+		gpu_particles_2d.restart();
+		gpu_particles_2d.emitting = true;
 	
 	# Desativa a colisão física para o jogador poder passar por cima
 	$CollisionShape2D.set_deferred("disabled", true)

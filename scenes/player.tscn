@@ -192,7 +192,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"Attack",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -317,10 +317,10 @@ size = Vector2(24.166656, 100.66669)
 [sub_resource type="Gradient" id="Gradient_tuyoq"]
 colors = PackedColorArray(9.022351, 9.853209, 18.892157, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_fjrip"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4r5pv"]
 gradient = SubResource("Gradient_tuyoq")
 
-[sub_resource type="CurveTexture" id="CurveTexture_tuyoq"]
+[sub_resource type="CurveTexture" id="CurveTexture_60mlk"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smehm"]
 lifetime_randomness = 1.0
@@ -334,20 +334,20 @@ gravity = Vector3(0, 700, 0)
 damping_min = 100.00001
 damping_max = 800.00006
 scale_max = 3.0
-color_ramp = SubResource("GradientTexture1D_fjrip")
-emission_curve = SubResource("CurveTexture_tuyoq")
+color_ramp = SubResource("GradientTexture1D_4r5pv")
+emission_curve = SubResource("CurveTexture_60mlk")
 
-[sub_resource type="Gradient" id="Gradient_dinhu"]
+[sub_resource type="Gradient" id="Gradient_i4ail"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_tuyoq"]
-gradient = SubResource("Gradient_dinhu")
+gradient = SubResource("Gradient_i4ail")
 fill = 1
 fill_from = Vector2(0.47008547, 0.50769234)
 fill_to = Vector2(0.13162394, 0.104273506)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4r5pv"]
-size = Vector2(46, 98)
+size = Vector2(56, 98)
 
 [node name="Player" type="CharacterBody2D" unique_id=476727846 groups=["Player", "player"]]
 collision_layer = 2
@@ -369,8 +369,8 @@ position = Vector2(3.8146973e-06, 0)
 scale = Vector2(1.75, 1.75)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"Attack"
-frame = 5
-frame_progress = 0.23207843
+frame = 10
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1018653463]
 position = Vector2(0.06251526, 12.25)
@@ -413,7 +413,7 @@ collision_mask = 8
 
 [node name="CollisionAtaque" type="CollisionShape2D" parent="AreaAtaque" unique_id=50728429]
 visibility_layer = 9
-position = Vector2(30, -14)
+position = Vector2(35, -14)
 shape = SubResource("RectangleShape2D_4r5pv")
 disabled = true
 

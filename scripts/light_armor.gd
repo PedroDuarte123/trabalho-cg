@@ -20,6 +20,7 @@ signal lit_changed(is_lit: bool)
 @export_group("Debug")
 @export var debug_log: bool = false
 @export_range(0.05, 10.0, 0.05) var debug_log_interval: float = 0.5
+@onready var shield_broken_effect: AnimatedSprite2D = $"../ShieldBrokenEffect"
 
 var armor: float
 var is_broken: bool = false
@@ -150,6 +151,8 @@ func _break_armor() -> void:
 	is_broken = true
 	_set_lit(false)
 	armor = 0.0
+
+	shield_broken_effect.play("default")
 
 	if break_flash:
 		_play_break_flash()
