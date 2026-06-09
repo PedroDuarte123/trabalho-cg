@@ -8,7 +8,9 @@ extends CharacterBody2D
 @export_range(0.05, 10.0, 0.05) var light_armor_debug_interval: float = 0.5
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
-
+# Vibração na Câmera
+var camera2D: Camera2D
+var cameraShakeNoise: FastNoiseLite
 
 # Configurações do Inimigo
 @export var speed: float = 50.0
@@ -38,6 +40,8 @@ var _stunned_by_light: bool = false
 
 
 func _ready():
+	camera2D = get_tree().get_first_node_in_group("player").get_node("Camera2D")
+	cameraShakeNoise = FastNoiseLite.new()
 	current_health = max_health
 	_setup_light_armor()
 	$AreaDanoEspada.body_entered.connect(_on_area_dano_espada_body_entered)
@@ -53,6 +57,7 @@ func _setup_light_armor() -> void:
 	armor.debug_log = light_armor_debug_log
 	armor.debug_log_interval = light_armor_debug_interval
 	armor.lit_changed.connect(_on_light_armor_lit_changed)
+	armor.armor_broken.connect(_on_light_armor_broken)
 	add_child(armor)
 	_light_armor = armor
 
@@ -63,7 +68,11 @@ func _on_light_armor_lit_changed(is_lit: bool) -> void:
 	if _stunned_by_light:
 		is_attacking = false
 		hitbox_espada_shape.disabled = true
-
+		
+func _on_light_armor_broken() -> void:
+	gpu_particles_2d.restart()
+	gpu_particles_2d.emitting = true
+	UseCameraTween()		
 
 func _physics_process(delta):
 	if is_dead:
@@ -178,8 +187,11 @@ func damage(amount: int = 1):
 			is_hurt = true
 			velocity.x = 0 # Para o movimento imediatamente
 			anim_sprite.play("Hurt")
+			
+			# Particulas e Vibraçao da Camera
 			gpu_particles_2d.restart();
 			gpu_particles_2d.emitting = true;
+			UseCameraTween()
 			
 			# Espera a animação "Hurt" terminar antes de voltar a patrulhar
 			await anim_sprite.animation_finished
@@ -193,6 +205,7 @@ func die():
 		anim_sprite.play("Die")
 		gpu_particles_2d.restart();
 		gpu_particles_2d.emitting = true;
+		UseCameraTween()
 	
 	# Desativa a colisão física para o jogador poder passar por cima
 	$CollisionShape2D.set_deferred("disabled", true)
@@ -200,3 +213,12 @@ func die():
 	# Aguarda a animação de morte terminar e destrói o inimigo
 	await anim_sprite.animation_finished
 	queue_free()
+	
+func StartCameraShake(intensity: float):
+	var cameraOffset = cameraShakeNoise.get_noise_1d(Time.get_ticks_msec()) * intensity
+	camera2D.offset.x = cameraOffset
+	camera2D.offset.y = cameraOffset
+
+func UseCameraTween():
+	var camera_tween = get_tree().create_tween()
+	camera_tween.tween_method(StartCameraShake, 5.0, 1.0, 0.5)
