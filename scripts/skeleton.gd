@@ -221,4 +221,4 @@ func StartCameraShake(intensity: float):
 
 func UseCameraTween():
 	var camera_tween = get_tree().create_tween()
-	camera_tween.tween_method(StartCameraShake, 5.0, 1.0, 0.5)
+	camera_tween.tween_method(StartCameraShake, 5.0, 0.0, 0.5)
