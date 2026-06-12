@@ -405,7 +405,6 @@ position_smoothing_speed = 4.0
 
 [node name="FlashlightDummy" parent="." unique_id=1374049123 instance=ExtResource("7_fjrip")]
 position = Vector2(25, -4)
-debug_draw = true
 
 [node name="AreaAtaque" type="Area2D" parent="." unique_id=2127601578]
 visibility_layer = 9

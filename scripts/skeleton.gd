@@ -36,6 +36,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var _light_armor: LightArmor = null
 var _stunned_by_light: bool = false
 
+# --- KNOCKBACK ---
+const KNOCKBACK_H:        float = 400.0
+const KNOCKBACK_V_SIDE:   float = -250.0
+const KNOCKBACK_DURATION: float = 0.18
+const KNOCKBACK_FRICTION: float = 600.0
+var _knockback_timer: float = 0.0
 
 
 
@@ -89,9 +95,14 @@ func _physics_process(delta):
 	if is_hurt:
 		if not is_on_floor():
 			velocity.y += gravity * delta
-		velocity.x = 0
+		# Aplica fricção ao knockback horizontal enquanto está em hurt
+		if _knockback_timer > 0.0:
+			_knockback_timer -= delta
+			velocity.x = move_toward(velocity.x, 0.0, KNOCKBACK_FRICTION * delta)
+		else:
+			velocity.x = 0.0
 		move_and_slide()
-		return # Impede de patrulhar ou atacar enquanto sofre dano
+		return
 	
 	# Aplicar gravidade
 	if not is_on_floor():
@@ -171,29 +182,32 @@ func _check_for_player():
 			#     collider.take_damage(1)
 
 # Função para receber dano (chame esta função a partir do ataque do seu jogador)
-func damage(amount: int = 1):
+func damage(amount: int = 1, damage_source_position: Vector2 = Vector2.ZERO):
 	if is_dead or is_hurt:
 		return
 	if _light_armor != null and _light_armor.is_intact():
 		return
-		
+
 	current_health -= amount
-	
+
 	if current_health <= 0:
 		die()
 	else:
-		# Toca uma animação de sofrer dano (se houver) para dar feedback visual
 		if anim_sprite.sprite_frames.has_animation("Hurt"):
 			is_hurt = true
-			velocity.x = 0 # Para o movimento imediatamente
+			
+			# --- Knockback ---
+			if damage_source_position != Vector2.ZERO:
+				var dir := global_position - damage_source_position
+				velocity.x = sign(dir.x) * KNOCKBACK_H
+				velocity.y = KNOCKBACK_V_SIDE
+				_knockback_timer = KNOCKBACK_DURATION
+
 			anim_sprite.play("Hurt")
-			
-			# Particulas e Vibraçao da Camera
-			gpu_particles_2d.restart();
-			gpu_particles_2d.emitting = true;
+			gpu_particles_2d.restart()
+			gpu_particles_2d.emitting = true
 			UseCameraTween()
-			
-			# Espera a animação "Hurt" terminar antes de voltar a patrulhar
+
 			await anim_sprite.animation_finished
 			is_hurt = false
 
