@@ -2425,7 +2425,10 @@ position = Vector2(9137, 313)
 position = Vector2(8879, 370)
 
 [node name="falling-platform6" parent="Falling Platforms" unique_id=1395843053 instance=ExtResource("16_e1j6l")]
-position = Vector2(9991, 316)
+position = Vector2(9882, 427)
+
+[node name="falling-platform8" parent="Falling Platforms" unique_id=500674932 instance=ExtResource("16_e1j6l")]
+position = Vector2(10129, 372)
 
 [node name="Checkpoints" type="Node2D" parent="." unique_id=1181905050]
 
@@ -2677,6 +2680,14 @@ position = Vector2(3157, 425)
 z_index = 1
 position = Vector2(4266, 294)
 
+[node name="Skeleton12" parent="Enemies" unique_id=1986774813 instance=ExtResource("21_5newe")]
+z_index = 1
+position = Vector2(3352, 62)
+
+[node name="Skeleton11" parent="Enemies" unique_id=1338714676 instance=ExtResource("21_5newe")]
+z_index = 1
+position = Vector2(3675, 65)
+
 [node name="Skeleton3" parent="Enemies" unique_id=2044098791 instance=ExtResource("21_5newe")]
 z_index = 1
 position = Vector2(6582, 128)
@@ -2701,6 +2712,12 @@ position = Vector2(12451.826, 395.5015)
 [node name="Skeleton8" parent="Enemies" unique_id=1891067848 instance=ExtResource("21_5newe")]
 position = Vector2(13322, 313)
 
+[node name="Skeleton13" parent="Enemies" unique_id=1541729391 instance=ExtResource("21_5newe")]
+position = Vector2(12901, 95)
+
+[node name="Skeleton14" parent="Enemies" unique_id=1653847488 instance=ExtResource("21_5newe")]
+position = Vector2(11827, 43)
+
 [node name="Skeleton9" parent="Enemies" unique_id=1059644226 instance=ExtResource("21_5newe")]
 position = Vector2(9496, 106)
 
@@ -2714,3 +2731,48 @@ position = Vector2(13876, 323)
 
 [node name="coin2" parent="coins" unique_id=1155896230 instance=ExtResource("13_sgl2t")]
 position = Vector2(803, 453)
+
+[node name="coin4" parent="coins" unique_id=117695571 instance=ExtResource("13_sgl2t")]
+position = Vector2(2371, 453)
+
+[node name="coin5" parent="coins" unique_id=2042061805 instance=ExtResource("13_sgl2t")]
+position = Vector2(3301, 107)
+
+[node name="coin6" parent="coins" unique_id=1218208635 instance=ExtResource("13_sgl2t")]
+position = Vector2(3748, 325)
+
+[node name="coin7" parent="coins" unique_id=1778784633 instance=ExtResource("13_sgl2t")]
+position = Vector2(3507, 105)
+
+[node name="coin8" parent="coins" unique_id=1650493581 instance=ExtResource("13_sgl2t")]
+position = Vector2(4780, 390)
+
+[node name="coin9" parent="coins" unique_id=1700295432 instance=ExtResource("13_sgl2t")]
+position = Vector2(5872, 331)
+
+[node name="coin10" parent="coins" unique_id=473427436 instance=ExtResource("13_sgl2t")]
+position = Vector2(6866, 520)
+
+[node name="coin12" parent="coins" unique_id=451925977 instance=ExtResource("13_sgl2t")]
+position = Vector2(8654, 272)
+
+[node name="coin13" parent="coins" unique_id=676833866 instance=ExtResource("13_sgl2t")]
+position = Vector2(10513, 520)
+
+[node name="coin14" parent="coins" unique_id=713493374 instance=ExtResource("13_sgl2t")]
+position = Vector2(10971, 521)
+
+[node name="coin15" parent="coins" unique_id=1179804861 instance=ExtResource("13_sgl2t")]
+position = Vector2(12793, 138)
+
+[node name="coin16" parent="coins" unique_id=1562364212 instance=ExtResource("13_sgl2t")]
+position = Vector2(12954, 136)
+
+[node name="coin11" parent="coins" unique_id=1726596732 instance=ExtResource("13_sgl2t")]
+position = Vector2(6611, 515)
+
+[node name="coin3" parent="coins" unique_id=1440247579 instance=ExtResource("13_sgl2t")]
+position = Vector2(325, 267)
+
+[node name="coin17" parent="coins" unique_id=1604773634 instance=ExtResource("13_sgl2t")]
+position = Vector2(436, 263)

@@ -225,4 +225,4 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 
 func _on_area_ataque_body_entered(body: Node2D) -> void:
 	if body.has_method("damage") and body != self:
-		body.damage(1)
+		body.damage(1, global_position)
