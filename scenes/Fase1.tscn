@@ -1,35 +1,35 @@
 [gd_scene format=4 uid="uid://dxv1mt5oob7af"]
 
-[ext_resource type="Texture2D" uid="uid://kt58bk5ar12c" path="res://sprites/leafspritesheet.png" id="1_ir15t"]
-[ext_resource type="Texture2D" uid="uid://g72vhpdqtf1y" path="res://background/BACKGROUND_4.png" id="1_krunx"]
-[ext_resource type="AudioStream" uid="uid://c6vovutcu7jar" path="res://audio/Hunter_s-Dream-SIE-Sound-Team-_youtube_.wav" id="2_qnb83"]
-[ext_resource type="Texture2D" uid="uid://cwbno8w3aoqxd" path="res://background/BACKGROUND_3.png" id="2_x8pbt"]
-[ext_resource type="Texture2D" uid="uid://cwip7ltipl1y7" path="res://background/BACKGROUND_2.png" id="3_lfna2"]
-[ext_resource type="AudioStream" uid="uid://2cy6snht4sb6" path="res://audio/noite.wav" id="3_sww3w"]
-[ext_resource type="Texture2D" uid="uid://hmpqw2ghmsia" path="res://background/BACKGROUND_1.png" id="4_m26gy"]
-[ext_resource type="Texture2D" uid="uid://qiujxjpex6gj" path="res://background/BACKGROUND_0.png" id="5_2b28d"]
-[ext_resource type="Texture2D" uid="uid://rliq4jl1x0dd" path="res://background/Bat_Sprite_Sheet.png" id="6_5w37d"]
-[ext_resource type="Texture2D" uid="uid://bqfc8t8lbl5mw" path="res://sprites/Campfire sheet.png" id="7_dinhu"]
-[ext_resource type="PackedScene" uid="uid://c7e573bl2lhj2" path="res://scenes/player.tscn" id="7_n26xj"]
-[ext_resource type="Texture2D" uid="uid://cpwee5wkfjtga" path="res://background/FOREGROUND.png" id="8_0c7p4"]
-[ext_resource type="PackedScene" uid="uid://dvxkiun4yoc8g" path="res://scenes/camera_intro_pan.tscn" id="9_bhx41"]
-[ext_resource type="Shader" uid="uid://bv2gj0mhmuuv3" path="res://shaders/fog.gdshader" id="10_trtic"]
-[ext_resource type="Texture2D" uid="uid://dq23lm66g84u7" path="res://sprites/Tiles.png" id="10_vtaks"]
-[ext_resource type="Texture2D" uid="uid://bthq6rh5jkrm" path="res://sprites/Village Props.png" id="11_37s47"]
-[ext_resource type="PackedScene" uid="uid://cylu1jdas63wn" path="res://prefabs/moving_platform.tscn" id="11_e1j6l"]
-[ext_resource type="Texture2D" uid="uid://bkrxoxd36sduf" path="res://sprites/Salt.png" id="11_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://4hqydv0nkstd" path="res://sprites/TX Tileset Ground.png" id="12_bt5mj"]
-[ext_resource type="PackedScene" uid="uid://2h46c84pdjq" path="res://prefabs/coin.tscn" id="13_sgl2t"]
-[ext_resource type="PackedScene" uid="uid://cfpvoaio4756c" path="res://scenes/checkpoints.tscn" id="14_1kice"]
-[ext_resource type="Script" uid="uid://ccc24p2dyqf2h" path="res://scripts/gpu_particles_2d.gd" id="14_ca42v"]
-[ext_resource type="PackedScene" uid="uid://rm1ee0yammxl" path="res://prefabs/falling_platform.tscn" id="15_bt5mj"]
-[ext_resource type="PackedScene" uid="uid://bxptui44tf71s" path="res://scenes/espinhos_area.tscn" id="15_pl11u"]
-[ext_resource type="PackedScene" uid="uid://do38nltif1j08" path="res://prefabs/falling_platform-2.tscn" id="16_e1j6l"]
-[ext_resource type="Shader" uid="uid://o8kiscgkax0i" path="res://shaders/foreground.gdshader" id="16_rysoc"]
-[ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="18_ssvqc"]
-[ext_resource type="PackedScene" uid="uid://dcrjxi7efeqyo" path="res://scenes/skeleton.tscn" id="21_5newe"]
-[ext_resource type="Script" uid="uid://1838f4rv7vej" path="res://scripts/game_manager.gd" id="23_game_manager"]
-[ext_resource type="PackedScene" uid="uid://beu8g4bis5w01" path="res://scenes/portal.tscn" id="29_suyxu"]
+[ext_resource type="Script" uid="uid://1838f4rv7vej" path="res://scripts/game_manager.gd" id="1_ninsh"]
+[ext_resource type="AudioStream" uid="uid://c6vovutcu7jar" path="res://audio/Hunter_s-Dream-SIE-Sound-Team-_youtube_.wav" id="2_ar0wc"]
+[ext_resource type="AudioStream" uid="uid://2cy6snht4sb6" path="res://audio/noite.wav" id="3_geqgc"]
+[ext_resource type="Texture2D" uid="uid://g72vhpdqtf1y" path="res://background/BACKGROUND_4.png" id="4_ay6bi"]
+[ext_resource type="Texture2D" uid="uid://cwbno8w3aoqxd" path="res://background/BACKGROUND_3.png" id="5_hm5dp"]
+[ext_resource type="Texture2D" uid="uid://cwip7ltipl1y7" path="res://background/BACKGROUND_2.png" id="6_d8w7s"]
+[ext_resource type="Texture2D" uid="uid://hmpqw2ghmsia" path="res://background/BACKGROUND_1.png" id="7_u8l5i"]
+[ext_resource type="Texture2D" uid="uid://qiujxjpex6gj" path="res://background/BACKGROUND_0.png" id="8_fmbq4"]
+[ext_resource type="Texture2D" uid="uid://rliq4jl1x0dd" path="res://background/Bat_Sprite_Sheet.png" id="9_bkrjd"]
+[ext_resource type="Texture2D" uid="uid://bqfc8t8lbl5mw" path="res://sprites/Campfire sheet.png" id="10_50t2c"]
+[ext_resource type="PackedScene" uid="uid://dvxkiun4yoc8g" path="res://scenes/camera_intro_pan.tscn" id="11_8j1cb"]
+[ext_resource type="PackedScene" uid="uid://c7e573bl2lhj2" path="res://scenes/player.tscn" id="12_ia7qx"]
+[ext_resource type="Texture2D" uid="uid://bthq6rh5jkrm" path="res://sprites/Village Props.png" id="13_rnaom"]
+[ext_resource type="Texture2D" uid="uid://4hqydv0nkstd" path="res://sprites/TX Tileset Ground.png" id="14_8hhyi"]
+[ext_resource type="Texture2D" uid="uid://dq23lm66g84u7" path="res://sprites/Tiles.png" id="15_3yfv3"]
+[ext_resource type="Texture2D" uid="uid://bkrxoxd36sduf" path="res://sprites/Salt.png" id="16_lrl5p"]
+[ext_resource type="PackedScene" uid="uid://cylu1jdas63wn" path="res://prefabs/moving_platform.tscn" id="17_uf5y0"]
+[ext_resource type="PackedScene" uid="uid://bxptui44tf71s" path="res://scenes/espinhos_area.tscn" id="18_x2m27"]
+[ext_resource type="PackedScene" uid="uid://rm1ee0yammxl" path="res://prefabs/falling_platform.tscn" id="19_1f754"]
+[ext_resource type="PackedScene" uid="uid://do38nltif1j08" path="res://prefabs/falling_platform-2.tscn" id="20_ihbkp"]
+[ext_resource type="PackedScene" uid="uid://cfpvoaio4756c" path="res://scenes/checkpoints.tscn" id="21_qvha5"]
+[ext_resource type="Texture2D" uid="uid://kt58bk5ar12c" path="res://sprites/leafspritesheet.png" id="22_52x0l"]
+[ext_resource type="Script" uid="uid://ccc24p2dyqf2h" path="res://scripts/gpu_particles_2d.gd" id="23_g0ron"]
+[ext_resource type="Shader" uid="uid://bv2gj0mhmuuv3" path="res://shaders/fog.gdshader" id="24_o6ewe"]
+[ext_resource type="Shader" uid="uid://o8kiscgkax0i" path="res://shaders/foreground.gdshader" id="25_b0iat"]
+[ext_resource type="Texture2D" uid="uid://cpwee5wkfjtga" path="res://background/FOREGROUND.png" id="26_xvj74"]
+[ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="27_sdfoc"]
+[ext_resource type="PackedScene" uid="uid://dcrjxi7efeqyo" path="res://scenes/skeleton.tscn" id="28_ntq3m"]
+[ext_resource type="PackedScene" uid="uid://beu8g4bis5w01" path="res://scenes/portal.tscn" id="29_p7d8f"]
+[ext_resource type="PackedScene" uid="uid://2h46c84pdjq" path="res://prefabs/coin.tscn" id="30_vix8l"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 3
@@ -47,23 +47,23 @@ fog_light_energy = 12.63
 fog_density = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g470a"]
-atlas = ExtResource("6_5w37d")
+atlas = ExtResource("9_bkrjd")
 region = Rect2(0, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_alj4n"]
-atlas = ExtResource("6_5w37d")
+atlas = ExtResource("9_bkrjd")
 region = Rect2(16, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8f4uj"]
-atlas = ExtResource("6_5w37d")
+atlas = ExtResource("9_bkrjd")
 region = Rect2(32, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3l2v0"]
-atlas = ExtResource("6_5w37d")
+atlas = ExtResource("9_bkrjd")
 region = Rect2(48, 0, 16, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_knm5q"]
-atlas = ExtResource("6_5w37d")
+atlas = ExtResource("9_bkrjd")
 region = Rect2(64, 0, 16, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p3ank"]
@@ -84,7 +84,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_knm5q")
 }],
-"loop": true,
+"loop": 1,
 "name": &"fly",
 "speed": 8.0
 }]
@@ -106,163 +106,163 @@ func _process(delta: float) -> void:
 "
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kvuet"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_trtic"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ir15t"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ca42v"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rysoc"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ssvqc"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_264po"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1kice"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5newe"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_37s47"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(128, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bt5mj"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pl11u"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(64, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bhx41"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(96, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qnb83"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(128, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sww3w"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_suyxu"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgl2t"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qouja"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wljb1"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(128, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v2yb1"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(0, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_js0lu"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(32, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gxtfn"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(64, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_twgab"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(96, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_02fa5"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(128, 128, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nepv3"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(0, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7025r"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(32, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m4url"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ool0"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(96, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pr1ej"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(128, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_05nbr"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(0, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0sl42"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(32, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oaba0"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(64, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_458eo"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(96, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h3rex"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(128, 192, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fedci"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(0, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qswn"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(32, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rm0al"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(64, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i4re6"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(96, 224, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pf7vy"]
-atlas = ExtResource("7_dinhu")
+atlas = ExtResource("10_50t2c")
 region = Rect2(128, 224, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o8ni1"]
@@ -388,7 +388,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pf7vy")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 12.0
 }]
@@ -411,7 +411,7 @@ normal = Vector2(0.9998817, -0.015382796)
 distance = -10388.94
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bt5mj"]
-texture = ExtResource("11_37s47")
+texture = ExtResource("13_rnaom")
 texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 2:0/0 = 0
@@ -887,7 +887,7 @@ texture_region_size = Vector2i(32, 32)
 1:5/0/z_index = -2
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e1j6l"]
-texture = ExtResource("12_bt5mj")
+texture = ExtResource("14_8hhyi")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
@@ -1150,7 +1150,7 @@ polygon = PackedVector2Array(-16, 16, 16, 16, 16, 5.7353554, -16, -8.921661, -16
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vtaks"]
 resource_name = "tiles1"
-texture = ExtResource("10_vtaks")
+texture = ExtResource("15_3yfv3")
 texture_region_size = Vector2i(32, 32)
 use_texture_padding = false
 4:1/0 = 0
@@ -1546,7 +1546,7 @@ use_texture_padding = false
 9:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -7.3285065, 16, 16, 16, 16, -16, 16)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dinhu"]
-texture = ExtResource("11_kvpfn")
+texture = ExtResource("16_lrl5p")
 texture_region_size = Vector2i(35, 32)
 0:0/size_in_atlas = Vector2i(3, 7)
 0:0/0 = 0
@@ -1565,7 +1565,7 @@ sources/1 = SubResource("TileSetAtlasSource_bt5mj")
 sources/2 = SubResource("TileSetAtlasSource_e1j6l")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvuet"]
-texture = ExtResource("10_vtaks")
+texture = ExtResource("15_3yfv3")
 texture_region_size = Vector2i(32, 32)
 use_texture_padding = false
 6:9/0 = 0
@@ -1611,7 +1611,7 @@ polygon = PackedVector2Array(-8, 8, -8, 4.6763268, -2.428093, 8)
 polygon = PackedVector2Array(8, 5.177803, 8, -2.9442406, -1.0660181, -8, -8, -8, -8, -3.0457664)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kvpfn"]
-texture = ExtResource("10_vtaks")
+texture = ExtResource("15_3yfv3")
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
@@ -2063,7 +2063,7 @@ color_ramp = SubResource("GradientTexture1D_ssvqc")
 anim_offset_max = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ca42v"]
-shader = ExtResource("10_trtic")
+shader = ExtResource("24_o6ewe")
 shader_parameter/fog_color = Color(2.148345, 1.9107567, 2.9289904, 0.015686275)
 shader_parameter/speed = 0.025
 shader_parameter/scale = 1.0
@@ -2074,18 +2074,18 @@ shader_parameter/scale = 1.0
 noise = SubResource("FastNoiseLite_ca42v")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rysoc"]
-shader = ExtResource("16_rysoc")
+shader = ExtResource("25_b0iat")
 
 [node name="Game" type="Node2D" unique_id=1006839918]
-script = ExtResource("23_game_manager")
+script = ExtResource("1_ninsh")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=598703618]
-stream = ExtResource("2_qnb83")
+stream = ExtResource("2_ar0wc")
 volume_db = 1.0
 autoplay = true
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1712043802]
-stream = ExtResource("3_sww3w")
+stream = ExtResource("3_geqgc")
 volume_db = -5.0
 autoplay = true
 
@@ -2112,7 +2112,7 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2DBackground4" unique_id=1104348564]
 modulate = Color(0.9721986, 0.9721986, 0.9721986, 1)
 position = Vector2(576, 324)
-texture = ExtResource("1_krunx")
+texture = ExtResource("4_ay6bi")
 metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground3" type="Parallax2D" parent="ParallaxBackground" unique_id=544769657]
@@ -2125,7 +2125,7 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2DBackground3" unique_id=364630219]
 modulate = Color(0.7, 0.7, 0.7, 1)
 position = Vector2(576, 324)
-texture = ExtResource("2_x8pbt")
+texture = ExtResource("5_hm5dp")
 metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground2" type="Parallax2D" parent="ParallaxBackground" unique_id=627754241]
@@ -2138,7 +2138,7 @@ metadata/_edit_lock_ = true
 modulate = Color(0.7, 0.7, 0.7, 1)
 position = Vector2(1267, 336)
 scale = Vector2(2.2, 2)
-texture = ExtResource("3_lfna2")
+texture = ExtResource("6_d8w7s")
 metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground1" type="Parallax2D" parent="ParallaxBackground" unique_id=1508328818]
@@ -2150,7 +2150,7 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2DBackground1" unique_id=1555284393]
 position = Vector2(924, 450)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_m26gy")
+texture = ExtResource("7_u8l5i")
 metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground0" type="Parallax2D" parent="ParallaxBackground" unique_id=1104227061]
@@ -2163,7 +2163,7 @@ metadata/_edit_lock_ = true
 modulate = Color(0.9, 0.9, 0.9, 1)
 position = Vector2(575.99994, 482)
 scale = Vector2(1.2, 1.2)
-texture = ExtResource("5_2b28d")
+texture = ExtResource("8_fmbq4")
 metadata/_edit_lock_ = true
 
 [node name="Parallax2DBackground5" type="Parallax2D" parent="ParallaxBackground" unique_id=604942947]
@@ -2239,13 +2239,13 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_kvuet")
 texture_scale = 8.0
 
-[node name="CameraIntroPan" parent="." unique_id=873266839 instance=ExtResource("9_bhx41")]
+[node name="CameraIntroPan" parent="." unique_id=873266839 instance=ExtResource("11_8j1cb")]
 override_start_y = true
 start_y = 300.0
 override_end_y = true
 end_y = 300.0
 
-[node name="Player" parent="." unique_id=476727846 instance=ExtResource("7_n26xj")]
+[node name="Player" parent="." unique_id=476727846 instance=ExtResource("12_ia7qx")]
 z_index = 1
 position = Vector2(389, 490)
 
@@ -2283,7 +2283,7 @@ tile_map_data = PackedByteArray("AABDABsAAAAJABYAAABFABwAAAAJABYAAABGABwAAAAIABU
 tile_set = SubResource("TileSet_kvuet")
 metadata/_edit_lock_ = true
 
-[node name="moving_platform" parent="Tiles" unique_id=1435971328 instance=ExtResource("11_e1j6l")]
+[node name="moving_platform" parent="Tiles" unique_id=1435971328 instance=ExtResource("17_uf5y0")]
 position = Vector2(13177, 341)
 move_horizontal = false
 vertical_direction = -1
@@ -2291,34 +2291,34 @@ require_flashlight = true
 
 [node name="Plataformas móveis" type="Node2D" parent="." unique_id=1244729716]
 
-[node name="moving_platform" parent="Plataformas móveis" unique_id=1862165002 instance=ExtResource("11_e1j6l")]
+[node name="moving_platform" parent="Plataformas móveis" unique_id=1862165002 instance=ExtResource("17_uf5y0")]
 position = Vector2(4744, 348)
 distance_multiplier = 5
 move_horizontal = false
 vertical_direction = -1
 require_flashlight = true
 
-[node name="moving_platform2" parent="Plataformas móveis" unique_id=115300817 instance=ExtResource("11_e1j6l")]
+[node name="moving_platform2" parent="Plataformas móveis" unique_id=115300817 instance=ExtResource("17_uf5y0")]
 position = Vector2(4615, 174)
 move_speed = 5.0
 distance_multiplier = 15
 horizontal_direction = -1
 require_flashlight = true
 
-[node name="moving_platform3" parent="Plataformas móveis" unique_id=210918778 instance=ExtResource("11_e1j6l")]
+[node name="moving_platform3" parent="Plataformas móveis" unique_id=210918778 instance=ExtResource("17_uf5y0")]
 position = Vector2(7083, 509)
 distance_multiplier = 5
 move_horizontal = false
 vertical_direction = -1
 require_flashlight = true
 
-[node name="moving_platform4" parent="Plataformas móveis" unique_id=1208018113 instance=ExtResource("11_e1j6l")]
+[node name="moving_platform4" parent="Plataformas móveis" unique_id=1208018113 instance=ExtResource("17_uf5y0")]
 position = Vector2(7389, 236)
 move_speed = 5.0
 distance_multiplier = 8
 require_flashlight = true
 
-[node name="moving_platform5" parent="Plataformas móveis" unique_id=1216762263 instance=ExtResource("11_e1j6l")]
+[node name="moving_platform5" parent="Plataformas móveis" unique_id=1216762263 instance=ExtResource("17_uf5y0")]
 position = Vector2(8281, 437)
 move_speed = 4.0
 distance_multiplier = 8
@@ -2326,14 +2326,14 @@ move_horizontal = false
 vertical_direction = -1
 require_flashlight = true
 
-[node name="moving_platform6" parent="Plataformas móveis" unique_id=2114543743 instance=ExtResource("11_e1j6l")]
+[node name="moving_platform6" parent="Plataformas móveis" unique_id=2114543743 instance=ExtResource("17_uf5y0")]
 position = Vector2(11322, 452)
 distance_multiplier = 6
 move_horizontal = false
 vertical_direction = -1
 require_flashlight = true
 
-[node name="moving_platform7" parent="Plataformas móveis" unique_id=65926675 instance=ExtResource("11_e1j6l")]
+[node name="moving_platform7" parent="Plataformas móveis" unique_id=65926675 instance=ExtResource("17_uf5y0")]
 position = Vector2(12103, 464)
 move_speed = 5.0
 distance_multiplier = 10
@@ -2343,102 +2343,102 @@ require_flashlight = true
 
 [node name="Espinhos" type="Node2D" parent="." unique_id=1428505819]
 
-[node name="espinhos_area" parent="Espinhos" unique_id=1159526242 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area" parent="Espinhos" unique_id=1159526242 instance=ExtResource("18_x2m27")]
 position = Vector2(5613, 508)
 
-[node name="espinhos_area2" parent="Espinhos" unique_id=189774100 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area2" parent="Espinhos" unique_id=189774100 instance=ExtResource("18_x2m27")]
 position = Vector2(5814, 508)
 
-[node name="espinhos_area3" parent="Espinhos" unique_id=1112327240 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area3" parent="Espinhos" unique_id=1112327240 instance=ExtResource("18_x2m27")]
 position = Vector2(6015, 506)
 
-[node name="espinhos_area4" parent="Espinhos" unique_id=313530035 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area4" parent="Espinhos" unique_id=313530035 instance=ExtResource("18_x2m27")]
 position = Vector2(6212, 505)
 
-[node name="espinhos_area5" parent="Espinhos" unique_id=1601054294 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area5" parent="Espinhos" unique_id=1601054294 instance=ExtResource("18_x2m27")]
 position = Vector2(6411, 505)
 
-[node name="espinhos_area6" parent="Espinhos" unique_id=1766887288 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area6" parent="Espinhos" unique_id=1766887288 instance=ExtResource("18_x2m27")]
 position = Vector2(7315, 507)
 
-[node name="espinhos_area7" parent="Espinhos" unique_id=1993632625 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area7" parent="Espinhos" unique_id=1993632625 instance=ExtResource("18_x2m27")]
 position = Vector2(7515, 507)
 
-[node name="espinhos_area8" parent="Espinhos" unique_id=1329868084 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area8" parent="Espinhos" unique_id=1329868084 instance=ExtResource("18_x2m27")]
 position = Vector2(7716, 506)
 
-[node name="espinhos_area9" parent="Espinhos" unique_id=27417892 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area9" parent="Espinhos" unique_id=27417892 instance=ExtResource("18_x2m27")]
 position = Vector2(7916, 506)
 
-[node name="espinhos_area10" parent="Espinhos" unique_id=178770017 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area10" parent="Espinhos" unique_id=178770017 instance=ExtResource("18_x2m27")]
 position = Vector2(8118, 504)
 
-[node name="espinhos_area11" parent="Espinhos" unique_id=1055187010 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area11" parent="Espinhos" unique_id=1055187010 instance=ExtResource("18_x2m27")]
 position = Vector2(8320, 503)
 
-[node name="espinhos_area12" parent="Espinhos" unique_id=955187590 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area12" parent="Espinhos" unique_id=955187590 instance=ExtResource("18_x2m27")]
 position = Vector2(9777, 509)
 
-[node name="espinhos_area13" parent="Espinhos" unique_id=406656019 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area13" parent="Espinhos" unique_id=406656019 instance=ExtResource("18_x2m27")]
 position = Vector2(9975, 509)
 
-[node name="espinhos_area14" parent="Espinhos" unique_id=2020326176 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area14" parent="Espinhos" unique_id=2020326176 instance=ExtResource("18_x2m27")]
 position = Vector2(10176, 508)
 
-[node name="espinhos_area15" parent="Espinhos" unique_id=681448118 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area15" parent="Espinhos" unique_id=681448118 instance=ExtResource("18_x2m27")]
 position = Vector2(10313, 509)
 
-[node name="espinhos_area16" parent="Espinhos" unique_id=1941364550 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area16" parent="Espinhos" unique_id=1941364550 instance=ExtResource("18_x2m27")]
 position = Vector2(8778, 507)
 
-[node name="espinhos_area17" parent="Espinhos" unique_id=1251233327 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area17" parent="Espinhos" unique_id=1251233327 instance=ExtResource("18_x2m27")]
 position = Vector2(8979, 507)
 
-[node name="espinhos_area18" parent="Espinhos" unique_id=1062358141 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area18" parent="Espinhos" unique_id=1062358141 instance=ExtResource("18_x2m27")]
 position = Vector2(9180, 507)
 
-[node name="espinhos_area19" parent="Espinhos" unique_id=2014658715 instance=ExtResource("15_pl11u")]
+[node name="espinhos_area19" parent="Espinhos" unique_id=2014658715 instance=ExtResource("18_x2m27")]
 position = Vector2(9379, 506)
 
 [node name="Falling Platforms" type="Node2D" parent="." unique_id=133409297]
 
-[node name="falling-platform1" parent="Falling Platforms" unique_id=502637173 instance=ExtResource("15_bt5mj")]
+[node name="falling-platform1" parent="Falling Platforms" unique_id=502637173 instance=ExtResource("19_1f754")]
 z_index = -1
 position = Vector2(5611, 275)
 
-[node name="falling-platform2" parent="Falling Platforms" unique_id=1791865354 instance=ExtResource("16_e1j6l")]
+[node name="falling-platform2" parent="Falling Platforms" unique_id=1791865354 instance=ExtResource("20_ihbkp")]
 position = Vector2(5865, 379)
 
-[node name="falling-platform3" parent="Falling Platforms" unique_id=919235344 instance=ExtResource("16_e1j6l")]
+[node name="falling-platform3" parent="Falling Platforms" unique_id=919235344 instance=ExtResource("20_ihbkp")]
 position = Vector2(6065, 324)
 
-[node name="falling-platform4" parent="Falling Platforms" unique_id=1016154346 instance=ExtResource("16_e1j6l")]
+[node name="falling-platform4" parent="Falling Platforms" unique_id=1016154346 instance=ExtResource("20_ihbkp")]
 position = Vector2(6262, 261)
 
-[node name="falling-platform" parent="Falling Platforms" unique_id=1082172477 instance=ExtResource("16_e1j6l")]
+[node name="falling-platform" parent="Falling Platforms" unique_id=1082172477 instance=ExtResource("20_ihbkp")]
 position = Vector2(7905, 196)
 
-[node name="falling-platform5" parent="Falling Platforms" unique_id=1937895804 instance=ExtResource("16_e1j6l")]
+[node name="falling-platform5" parent="Falling Platforms" unique_id=1937895804 instance=ExtResource("20_ihbkp")]
 position = Vector2(9137, 313)
 
-[node name="falling-platform7" parent="Falling Platforms" unique_id=743412011 instance=ExtResource("15_bt5mj")]
+[node name="falling-platform7" parent="Falling Platforms" unique_id=743412011 instance=ExtResource("19_1f754")]
 position = Vector2(8879, 370)
 
-[node name="falling-platform6" parent="Falling Platforms" unique_id=1395843053 instance=ExtResource("16_e1j6l")]
+[node name="falling-platform6" parent="Falling Platforms" unique_id=1395843053 instance=ExtResource("20_ihbkp")]
 position = Vector2(9882, 427)
 
-[node name="falling-platform8" parent="Falling Platforms" unique_id=500674932 instance=ExtResource("16_e1j6l")]
+[node name="falling-platform8" parent="Falling Platforms" unique_id=500674932 instance=ExtResource("20_ihbkp")]
 position = Vector2(10129, 372)
 
 [node name="Checkpoints" type="Node2D" parent="." unique_id=1181905050]
 
-[node name="Checkpoint1" parent="Checkpoints" unique_id=247676925 instance=ExtResource("14_1kice")]
+[node name="Checkpoint1" parent="Checkpoints" unique_id=247676925 instance=ExtResource("21_qvha5")]
 position = Vector2(1362, 405)
 
-[node name="Checkpoint2" parent="Checkpoints" unique_id=1948177774 instance=ExtResource("14_1kice")]
+[node name="Checkpoint2" parent="Checkpoints" unique_id=1948177774 instance=ExtResource("21_qvha5")]
 position = Vector2(4071, 243)
 
-[node name="Checkpoint3" parent="Checkpoints" unique_id=408573744 instance=ExtResource("14_1kice")]
+[node name="Checkpoint3" parent="Checkpoints" unique_id=408573744 instance=ExtResource("21_qvha5")]
 position = Vector2(8592, 157)
 
 [node name="Pos-Processamento" type="Node2D" parent="." unique_id=2073975394]
@@ -2450,10 +2450,10 @@ z_index = 2
 material = SubResource("CanvasItemMaterial_ca42v")
 position = Vector2(477, 350)
 amount = 40
-texture = ExtResource("1_ir15t")
+texture = ExtResource("22_52x0l")
 visibility_rect = Rect2(-2900, -350, 7000, 600)
 process_material = SubResource("ParticleProcessMaterial_trtic")
-script = ExtResource("14_ca42v")
+script = ExtResource("23_g0ron")
 
 [node name="Nevoa" type="Node2D" parent="Pos-Processamento" unique_id=453357350]
 position = Vector2(778.21893, 422.00003)
@@ -2663,116 +2663,116 @@ z_index = 1
 material = SubResource("ShaderMaterial_rysoc")
 position = Vector2(864, 425.00003)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("8_0c7p4")
+texture = ExtResource("26_xvj74")
 metadata/_edit_lock_ = true
 
-[node name="LifebarCanvasLayer" parent="." unique_id=198287825 instance=ExtResource("18_ssvqc")]
+[node name="LifebarCanvasLayer" parent="." unique_id=198287825 instance=ExtResource("27_sdfoc")]
 offset = Vector2(50, 30)
 transform = Transform2D(1, 0, 0, 1, 50, 30)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1309785352]
 
-[node name="Skeleton1" parent="Enemies" unique_id=903582782 instance=ExtResource("21_5newe")]
+[node name="Skeleton1" parent="Enemies" unique_id=903582782 instance=ExtResource("28_ntq3m")]
 z_index = 1
 position = Vector2(3157, 425)
 
-[node name="Skeleton2" parent="Enemies" unique_id=259601359 instance=ExtResource("21_5newe")]
+[node name="Skeleton2" parent="Enemies" unique_id=259601359 instance=ExtResource("28_ntq3m")]
 z_index = 1
 position = Vector2(4266, 294)
 
-[node name="Skeleton12" parent="Enemies" unique_id=1986774813 instance=ExtResource("21_5newe")]
+[node name="Skeleton12" parent="Enemies" unique_id=1986774813 instance=ExtResource("28_ntq3m")]
 z_index = 1
 position = Vector2(3352, 62)
 
-[node name="Skeleton11" parent="Enemies" unique_id=1338714676 instance=ExtResource("21_5newe")]
+[node name="Skeleton11" parent="Enemies" unique_id=1338714676 instance=ExtResource("28_ntq3m")]
 z_index = 1
 position = Vector2(3675, 65)
 
-[node name="Skeleton3" parent="Enemies" unique_id=2044098791 instance=ExtResource("21_5newe")]
+[node name="Skeleton3" parent="Enemies" unique_id=2044098791 instance=ExtResource("28_ntq3m")]
 z_index = 1
 position = Vector2(6582, 128)
 
-[node name="Skeleton4" parent="Enemies" unique_id=1114977453 instance=ExtResource("21_5newe")]
+[node name="Skeleton4" parent="Enemies" unique_id=1114977453 instance=ExtResource("28_ntq3m")]
 z_index = 1
 position = Vector2(7088, 220)
 
-[node name="Skeleton" parent="Enemies" unique_id=1069310576 instance=ExtResource("21_5newe")]
+[node name="Skeleton" parent="Enemies" unique_id=1069310576 instance=ExtResource("28_ntq3m")]
 position = Vector2(10500, 260)
 
-[node name="Skeleton5" parent="Enemies" unique_id=274757963 instance=ExtResource("21_5newe")]
+[node name="Skeleton5" parent="Enemies" unique_id=274757963 instance=ExtResource("28_ntq3m")]
 position = Vector2(10887.595, 197.418)
 
-[node name="Skeleton6" parent="Enemies" unique_id=804841180 instance=ExtResource("21_5newe")]
+[node name="Skeleton6" parent="Enemies" unique_id=804841180 instance=ExtResource("28_ntq3m")]
 position = Vector2(1535, 377)
 light_armor_debug_log = true
 
-[node name="Skeleton7" parent="Enemies" unique_id=1491214252 instance=ExtResource("21_5newe")]
+[node name="Skeleton7" parent="Enemies" unique_id=1491214252 instance=ExtResource("28_ntq3m")]
 position = Vector2(12451.826, 395.5015)
 
-[node name="Skeleton8" parent="Enemies" unique_id=1891067848 instance=ExtResource("21_5newe")]
+[node name="Skeleton8" parent="Enemies" unique_id=1891067848 instance=ExtResource("28_ntq3m")]
 position = Vector2(13322, 313)
 
-[node name="Skeleton13" parent="Enemies" unique_id=1541729391 instance=ExtResource("21_5newe")]
+[node name="Skeleton13" parent="Enemies" unique_id=1541729391 instance=ExtResource("28_ntq3m")]
 position = Vector2(12901, 95)
 
-[node name="Skeleton14" parent="Enemies" unique_id=1653847488 instance=ExtResource("21_5newe")]
+[node name="Skeleton14" parent="Enemies" unique_id=1653847488 instance=ExtResource("28_ntq3m")]
 position = Vector2(11827, 43)
 
-[node name="Skeleton9" parent="Enemies" unique_id=1059644226 instance=ExtResource("21_5newe")]
+[node name="Skeleton9" parent="Enemies" unique_id=1059644226 instance=ExtResource("28_ntq3m")]
 position = Vector2(9496, 106)
 
-[node name="Skeleton10" parent="Enemies" unique_id=1137512940 instance=ExtResource("21_5newe")]
+[node name="Skeleton10" parent="Enemies" unique_id=1137512940 instance=ExtResource("28_ntq3m")]
 position = Vector2(621, 221)
 
-[node name="Portal" parent="." unique_id=1188830904 instance=ExtResource("29_suyxu")]
+[node name="Portal" parent="." unique_id=1188830904 instance=ExtResource("29_p7d8f")]
 position = Vector2(13876, 323)
 
 [node name="coins" type="Node2D" parent="." unique_id=1784960793]
 
-[node name="coin2" parent="coins" unique_id=1155896230 instance=ExtResource("13_sgl2t")]
+[node name="coin2" parent="coins" unique_id=1155896230 instance=ExtResource("30_vix8l")]
 position = Vector2(803, 453)
 
-[node name="coin4" parent="coins" unique_id=117695571 instance=ExtResource("13_sgl2t")]
+[node name="coin4" parent="coins" unique_id=117695571 instance=ExtResource("30_vix8l")]
 position = Vector2(2371, 453)
 
-[node name="coin5" parent="coins" unique_id=2042061805 instance=ExtResource("13_sgl2t")]
+[node name="coin5" parent="coins" unique_id=2042061805 instance=ExtResource("30_vix8l")]
 position = Vector2(3301, 107)
 
-[node name="coin6" parent="coins" unique_id=1218208635 instance=ExtResource("13_sgl2t")]
+[node name="coin6" parent="coins" unique_id=1218208635 instance=ExtResource("30_vix8l")]
 position = Vector2(3748, 325)
 
-[node name="coin7" parent="coins" unique_id=1778784633 instance=ExtResource("13_sgl2t")]
+[node name="coin7" parent="coins" unique_id=1778784633 instance=ExtResource("30_vix8l")]
 position = Vector2(3507, 105)
 
-[node name="coin8" parent="coins" unique_id=1650493581 instance=ExtResource("13_sgl2t")]
+[node name="coin8" parent="coins" unique_id=1650493581 instance=ExtResource("30_vix8l")]
 position = Vector2(4780, 390)
 
-[node name="coin9" parent="coins" unique_id=1700295432 instance=ExtResource("13_sgl2t")]
+[node name="coin9" parent="coins" unique_id=1700295432 instance=ExtResource("30_vix8l")]
 position = Vector2(5872, 331)
 
-[node name="coin10" parent="coins" unique_id=473427436 instance=ExtResource("13_sgl2t")]
+[node name="coin10" parent="coins" unique_id=473427436 instance=ExtResource("30_vix8l")]
 position = Vector2(6866, 520)
 
-[node name="coin12" parent="coins" unique_id=451925977 instance=ExtResource("13_sgl2t")]
+[node name="coin12" parent="coins" unique_id=451925977 instance=ExtResource("30_vix8l")]
 position = Vector2(8654, 272)
 
-[node name="coin13" parent="coins" unique_id=676833866 instance=ExtResource("13_sgl2t")]
+[node name="coin13" parent="coins" unique_id=676833866 instance=ExtResource("30_vix8l")]
 position = Vector2(10513, 520)
 
-[node name="coin14" parent="coins" unique_id=713493374 instance=ExtResource("13_sgl2t")]
+[node name="coin14" parent="coins" unique_id=713493374 instance=ExtResource("30_vix8l")]
 position = Vector2(10971, 521)
 
-[node name="coin15" parent="coins" unique_id=1179804861 instance=ExtResource("13_sgl2t")]
+[node name="coin15" parent="coins" unique_id=1179804861 instance=ExtResource("30_vix8l")]
 position = Vector2(12793, 138)
 
-[node name="coin16" parent="coins" unique_id=1562364212 instance=ExtResource("13_sgl2t")]
+[node name="coin16" parent="coins" unique_id=1562364212 instance=ExtResource("30_vix8l")]
 position = Vector2(12954, 136)
 
-[node name="coin11" parent="coins" unique_id=1726596732 instance=ExtResource("13_sgl2t")]
+[node name="coin11" parent="coins" unique_id=1726596732 instance=ExtResource("30_vix8l")]
 position = Vector2(6611, 515)
 
-[node name="coin3" parent="coins" unique_id=1440247579 instance=ExtResource("13_sgl2t")]
+[node name="coin3" parent="coins" unique_id=1440247579 instance=ExtResource("30_vix8l")]
 position = Vector2(325, 267)
 
-[node name="coin17" parent="coins" unique_id=1604773634 instance=ExtResource("13_sgl2t")]
+[node name="coin17" parent="coins" unique_id=1604773634 instance=ExtResource("30_vix8l")]
 position = Vector2(436, 263)
