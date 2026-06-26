@@ -27,7 +27,7 @@
 [ext_resource type="Shader" uid="uid://o8kiscgkax0i" path="res://shaders/foreground.gdshader" id="25_b0iat"]
 [ext_resource type="Texture2D" uid="uid://cpwee5wkfjtga" path="res://background/FOREGROUND.png" id="26_xvj74"]
 [ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="27_sdfoc"]
-[ext_resource type="PackedScene" uid="uid://dcrjxi7efeqyo" path="res://scenes/skeleton.tscn" id="28_ntq3m"]
+[ext_resource type="PackedScene" path="res://scenes/skeleton.tscn" id="28_ntq3m"]
 [ext_resource type="PackedScene" uid="uid://beu8g4bis5w01" path="res://scenes/portal.tscn" id="29_p7d8f"]
 [ext_resource type="PackedScene" uid="uid://2h46c84pdjq" path="res://prefabs/coin.tscn" id="30_vix8l"]
 
@@ -2043,7 +2043,7 @@ particles_anim_loop = false
 offsets = PackedFloat32Array(0, 0.2137931, 0.8137931, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ssvqc"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ninsh"]
 gradient = SubResource("Gradient_rysoc")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_trtic"]
@@ -2059,7 +2059,7 @@ angular_velocity_max = 24.999983
 gravity = Vector3(0, 10, 0)
 scale_min = 0.5
 scale_max = 2.0
-color_ramp = SubResource("GradientTexture1D_ssvqc")
+color_ramp = SubResource("GradientTexture1D_ninsh")
 anim_offset_max = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ca42v"]
