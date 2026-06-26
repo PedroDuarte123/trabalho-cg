@@ -57,13 +57,13 @@ func play() -> void:
 	if is_instance_valid(return_camera):
 		_intro_camera.zoom = return_camera.zoom
 
-	_intro_camera.global_position = _compute_start_position(return_camera)
+	_intro_camera.global_position = _compute_end_position(return_camera)
 	_intro_camera.make_current()
 
 	if start_delay > 0.0:
 		await get_tree().create_timer(start_delay).timeout
 
-	var end_pos := _compute_end_position(return_camera)
+	var end_pos := return_camera.global_position if is_instance_valid(return_camera) else _compute_start_position(return_camera)
 	var tween := create_tween()
 	tween.set_trans(Tween.TRANS_SINE)
 	tween.set_ease(Tween.EASE_IN_OUT)
