@@ -903,14 +903,6 @@ position = Vector2(137.00002, 352)
 scale = Vector2(1.9508929, 3.2410715)
 texture = ExtResource("12_gkoj0")
 
-[node name="Enemies" type="Node2D" parent="." unique_id=140457045]
-
-[node name="Skeleton" parent="Enemies" unique_id=903582782 instance=ExtResource("13_5x7wd")]
-position = Vector2(832, 476)
-
-[node name="Skeleton2" parent="Enemies" unique_id=450905601 instance=ExtResource("13_5x7wd")]
-position = Vector2(1827, 338)
-
 [node name="moving platforms" type="Node2D" parent="." unique_id=1605631179]
 
 [node name="moving_platform" parent="moving platforms" unique_id=1435971328 instance=ExtResource("14_dantq")]
@@ -939,7 +931,6 @@ require_flashlight = true
 position = Vector2(3413, 86)
 move_speed = 5.0
 distance_multiplier = 12
-horizontal_direction = -1
 require_flashlight = true
 
 [node name="falling platforms" type="Node2D" parent="." unique_id=1175042707]
@@ -1015,9 +1006,6 @@ position = Vector2(3900, 57)
 [node name="coin9" parent="Coin" unique_id=768888022 instance=ExtResource("14_gkoj0")]
 position = Vector2(4801, 208)
 
-[node name="Skeleton" parent="Coin/coin9" unique_id=161067650 instance=ExtResource("13_5x7wd")]
-position = Vector2(-87, 128)
-
 [node name="coin7" parent="Coin" unique_id=1660235645 instance=ExtResource("14_gkoj0")]
 position = Vector2(3070, 103)
 
@@ -1050,15 +1038,6 @@ position = Vector2(2833, 491)
 [node name="espinhos_area5" parent="Espinhos" unique_id=714351153 instance=ExtResource("17_xa747")]
 position = Vector2(3035, 491)
 
-[node name="Skeleton" parent="." unique_id=1029434441 instance=ExtResource("13_5x7wd")]
-position = Vector2(2598, 65)
-
-[node name="Skeleton2" parent="." unique_id=1049203523 instance=ExtResource("13_5x7wd")]
-position = Vector2(3678, 319)
-
-[node name="Skeleton3" parent="." unique_id=2092338636 instance=ExtResource("13_5x7wd")]
-position = Vector2(4020, 261)
-
 [node name="Ckeckpoints" type="Node2D" parent="." unique_id=941165667]
 
 [node name="Checkpoint" parent="Ckeckpoints" unique_id=247676925 instance=ExtResource("18_wucy0")]
@@ -1069,3 +1048,23 @@ position = Vector2(2092, 449)
 
 [node name="espinhos_area5" parent="." unique_id=1084183191 instance=ExtResource("17_xa747")]
 position = Vector2(3144, 492)
+
+[node name="Enemies" type="Node2D" parent="." unique_id=140457045]
+
+[node name="Skeleton" parent="Enemies" unique_id=903582782 instance=ExtResource("13_5x7wd")]
+position = Vector2(832, 476)
+
+[node name="Skeleton2" parent="Enemies" unique_id=450905601 instance=ExtResource("13_5x7wd")]
+position = Vector2(1827, 338)
+
+[node name="Skeleton3" parent="Enemies" unique_id=1029434441 instance=ExtResource("13_5x7wd")]
+position = Vector2(2598, 65)
+
+[node name="Skeleton4" parent="Enemies" unique_id=1049203523 instance=ExtResource("13_5x7wd")]
+position = Vector2(3678, 319)
+
+[node name="Skeleton5" parent="Enemies" unique_id=2092338636 instance=ExtResource("13_5x7wd")]
+position = Vector2(4020, 261)
+
+[node name="Skeleton6" parent="Enemies" unique_id=161067650 instance=ExtResource("13_5x7wd")]
+position = Vector2(4714, 336)
