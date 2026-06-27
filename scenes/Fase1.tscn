@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dxv1mt5oob7af"]
 
-[ext_resource type="Script" uid="uid://1838f4rv7vej" path="res://scripts/game_manager.gd" id="1_ninsh"]
+[ext_resource type="Script" uid="uid://1838f4rv7vej" path="res://scripts/fase1.gd" id="1_ninsh"]
 [ext_resource type="AudioStream" uid="uid://c6vovutcu7jar" path="res://audio/Hunter_s-Dream-SIE-Sound-Team-_youtube_.wav" id="2_ar0wc"]
 [ext_resource type="AudioStream" uid="uid://2cy6snht4sb6" path="res://audio/noite.wav" id="3_geqgc"]
 [ext_resource type="Texture2D" uid="uid://g72vhpdqtf1y" path="res://background/BACKGROUND_4.png" id="4_ay6bi"]

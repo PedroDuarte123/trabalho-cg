@@ -1,7 +1,7 @@
 extends Node2D
 
 const SAVE_PATH := "user://savegame.cfg"
-const SAVE_SECTION := "player"
+const SAVE_SECTION := "fase_1"
 
 @onready var player: CharacterBody2D = $Player
 
