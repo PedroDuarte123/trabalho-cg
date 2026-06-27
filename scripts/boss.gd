@@ -84,7 +84,7 @@ func _physics_process(delta: float) -> void:
 	if player and not player.is_dead:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
-		anim_sprite.play("Move")
+		anim_sprite.play("Idle")
 		anim_sprite.flip_h = direction.x < 0
 		
 		# Ajusta as direções das áreas de colisão baseado para onde ele olha
@@ -100,7 +100,7 @@ func _physics_process(delta: float) -> void:
 func use_recharge_skill() -> void:
 	is_casting = true
 	velocity = Vector2.ZERO
-	anim_sprite.play("Cast")
+	anim_sprite.play("Skill1")
 	
 	# Se a armadura foi quebrada, restaura o estado inicial dela
 	if _light_armor:
@@ -150,8 +150,8 @@ func die() -> void:
 	hitbox_ataque_shape.set_deferred("disabled", true)
 	$CollisionShape2D.set_deferred("disabled", true)
 	
-	if anim_sprite.sprite_frames.has_animation("Die"):
-		anim_sprite.play("Die")
+	if anim_sprite.sprite_frames.has_animation("Death"):
+		anim_sprite.play("Death")
 	else:
 		queue_free()
 
