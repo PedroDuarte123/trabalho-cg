@@ -502,7 +502,9 @@ shape = SubResource("RectangleShape2D_mautr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1617496902]
 sprite_frames = SubResource("SpriteFrames_6sve4")
-animation = &"Attack"
+animation = &"Summon"
+frame = 4
+frame_progress = 1.0
 
 [node name="AreaAtaqueDetect" type="Area2D" parent="." unique_id=1750762823]
 collision_layer = 2
