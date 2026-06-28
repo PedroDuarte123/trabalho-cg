@@ -1,10 +1,16 @@
 extends CharacterBody2D
 
-@export var max_health: int = 20
+@export var max_health: int = 10 # Atualizado para 10 de vida total
 @export var speed: float = 120.0
-@export var skill_cooldown_time: float = 50.0
+@export var skill_cooldown_time: float = 20.0 # Reduzido para 20 segundos
 @export var soul_scene: PackedScene = preload("res://scenes/boss_soul.tscn")
+@export var attack_cooldown_time: float = 4.0
 
+# --- CONFIGURAÇÕES DE KNOCKBACK ---
+const KNOCKBACK_H: float = 240.0
+const KNOCKBACK_V: float = -150.0      
+const KNOCKBACK_DURATION: float = 0.25 
+var _knockback_timer: float = 0.0
 
 var current_health: int
 var player: CharacterBody2D = null
@@ -14,9 +20,14 @@ var is_attacking: bool = false
 var is_casting: bool = false
 
 var _skill_timer: float = 0.0
+var _attack_cooldown_timer: float = 0.0
 
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox_ataque_shape: CollisionShape2D = $HitboxAtaque/CollisionShape2D
+
+# --- REFERÊNCIAS PARA INVERSÃO DE DIREÇÃO ---
+@onready var area_ataque_detect: Area2D = $AreaAtaqueDetect
+@onready var hitbox_ataque: Area2D = $HitboxAtaque
 
 var _light_armor: LightArmor = null
 var _stunned_by_light: bool = false
@@ -28,37 +39,30 @@ func _ready() -> void:
 	_skill_timer = skill_cooldown_time
 	_setup_boss_armor()
 
-	# Começa nulo para a ArenaBoss ativar depois
 	player = null
 
-	# Use apenas o nome direto do nó filho:
 	$AreaAtaqueDetect.body_entered.connect(_on_area_ataque_detect_body_entered)
 	$HitboxAtaque.body_entered.connect(_on_hitbox_ataque_body_entered)
 	
 	anim_sprite.animation_finished.connect(_on_animation_finished)
 
+
 func _setup_boss_armor() -> void:
-	# Se você não tiver o nó "ShieldBrokenEffect" na cena do Boss, criamos um visível
-	# Mas em vez de vazio, vamos fazer o próprio corpo do Boss piscar azul/branco quando quebrar
 	var armor := LightArmor.new()
-	armor.max_armor = 4.0
+	armor.max_armor = 5.0
 	armor.drain_per_second = 1.0
-	armor.debug_log = false
+	armor.debug_log = true
 	armor.lit_changed.connect(_on_light_armor_lit_changed)
-	
-	# Conecta o sinal de quebra de armadura para fazer um efeito visual direto no Boss
 	armor.armor_broken.connect(_on_boss_armor_broken)
 	
 	add_child(armor)
 	_light_armor = armor
 
-# --- NOVA FUNÇÃO DE FEEDBACK DE QUEBRA DE ESCUDO ---
+
 func _on_boss_armor_broken() -> void:
-	# Como o ShieldBrokenEffect do script original pode estar ausente ou nulo,
-	# geramos um flash de luz modulando a cor do próprio Boss para dar o feedback visual
 	var tween = create_tween()
-	tween.tween_property(anim_sprite, "modulate", Color(0, 2, 2, 1), 0.1) # Brilho ciano/azul
-	tween.tween_property(anim_sprite, "modulate", Color(1, 1, 1, 1), 0.15) # Volta ao normal
+	tween.tween_property(anim_sprite, "modulate", Color(0, 2, 2, 1), 0.1)
+	tween.tween_property(anim_sprite, "modulate", Color(1, 1, 1, 1), 0.15)
 	print("[Boss] Escudo de luz estilhaçado!")
 
 
@@ -67,58 +71,77 @@ func _on_light_armor_lit_changed(is_lit: bool) -> void:
 	if _stunned_by_light:
 		is_attacking = false
 		hitbox_ataque_shape.disabled = true
+		if anim_sprite.animation == "Attack":
+			anim_sprite.play("Idle")
 
 
 func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 		
-	# Gerenciador da Skill de Recarga (50 segundos)
+	# Gerenciador da Skill de Recarga
 	if _skill_timer > 0.0:
 		_skill_timer -= delta
 	else:
-		if not is_hurt and not is_dead:
+		if not is_hurt and not is_dead and not _stunned_by_light:
 			use_recharge_skill()
+
+	# Reduz o tempo de espera do ataque normal
+	if _attack_cooldown_timer > 0.0:
+		_attack_cooldown_timer -= delta
+
+	# Processa o tempo restante do Knockback
+	if _knockback_timer > 0.0:
+		_knockback_timer -= delta
+		move_and_slide()
+		return
 
 	if is_hurt or is_casting:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
 
-	# --- CONTROLE DOS FRAMES EXATOS DE ATAQUE ---
+	# Paralisia total se estiver sob a lanterna
+	if _stunned_by_light:
+		velocity = Vector2.ZERO
+		if not is_hurt and not is_casting:
+			anim_sprite.play("Idle")
+		move_and_slide()
+		return
+
+	# CONTROLE DOS FRAMES EXATOS DE ATAQUE
 	if is_attacking:
-		# Ativa a colisão apenas se estiver na animação "Attack" E nos frames específicos: 2, 3, 9 ou 10
 		if anim_sprite.animation == "Attack" and anim_sprite.frame in [2, 3, 9, 10]:
 			hitbox_ataque_shape.disabled = false
 		else:
 			hitbox_ataque_shape.disabled = true
 	else:
-		# Garante que a hitbox fica desligada se não estiver atacando
 		hitbox_ataque_shape.disabled = true
 
-	# Movimentação e Perseguição Flutuante Implacável
+	# Movimentação e Perseguição (Flutuando em Idle)
 	if player and not player.is_dead:
 		var direction = (player.global_position - global_position).normalized()
+		velocity = direction * speed
 		
-		# Se estiver sob a lanterna (_stunned_by_light), ele fica ligeiramente mais lento (40% da velocidade)
-		var velocidade_atual = speed * 0.4 if _stunned_by_light else speed
-		velocity = direction * velocidade_atual
-		
-		# Só toca a animação de movimento se não estiver executando a de Ataque
 		if not is_attacking:
 			anim_sprite.play("Idle")
 			
-		# --- INVERSÃO DO SPRITE DO BOSS ---
+		# Inversão de direção das hitboxes
 		if direction.x < 0:
 			anim_sprite.flip_h = true
+			area_ataque_detect.scale.x = -1
+			hitbox_ataque.scale.x = -1
 		elif direction.x > 0:
 			anim_sprite.flip_h = false
+			area_ataque_detect.scale.x = 1
+			hitbox_ataque.scale.x = 1
 	else:
 		velocity = Vector2.ZERO
 		if not is_attacking:
 			anim_sprite.play("Idle")
 
 	move_and_slide()
+
 
 func use_recharge_skill() -> void:
 	is_casting = true
@@ -141,26 +164,34 @@ func damage(amount: int = 1, damage_source_position: Vector2 = Vector2.ZERO) -> 
 
 	current_health -= amount
 
-	if current_health <= 10 and not souls_summoned:
+	# Ativa a invocação ao atingir 5 de vida ou menos
+	if current_health <= 5 and not souls_summoned:
 		summon_souls()
 
 	if current_health <= 0:
 		die()
 	else:
-		if anim_sprite.sprite_frames.has_animation("Hurt"):
-			is_hurt = true
-			is_attacking = false
-			hitbox_ataque_shape.disabled = true
-			anim_sprite.play("Hurt")
+		if damage_source_position != Vector2.ZERO:
+			var dir := global_position - damage_source_position
+			velocity.x = sign(dir.x) * KNOCKBACK_H
+			velocity.y = KNOCKBACK_V
+			_knockback_timer = KNOCKBACK_DURATION
 
 
 func summon_souls() -> void:
 	souls_summoned = true
-
-	for i in range(3):
+	
+	# Definição dos offsets geométricos (ajuste a distância de 60 pixels se achar muito longe/perto)
+	var spawn_offsets = [
+		Vector2(0, -60),   # Acima
+		Vector2(-60, 0),  # Esquerda
+		Vector2(60, 0)    # Direita
+	]
+	
+	for offset in spawn_offsets:
 		if soul_scene:
 			var soul = soul_scene.instantiate()
-			soul.global_position = global_position + Vector2(randf_range(-50, 50), randf_range(-50, 50))
+			soul.global_position = global_position + offset
 			get_tree().current_scene.add_child(soul)
 
 
@@ -170,19 +201,15 @@ func die() -> void:
 	hitbox_ataque_shape.set_deferred("disabled", true)
 	$CollisionShape2D.set_deferred("disabled", true)
 	
-	# Procura o nó da Arena na árvore e libera o jogador e a câmera
 	var arena = get_tree().current_scene.find_child("ArenaBoss", true, false)
 	if arena and arena.has_method("encerrar_arena"):
 		arena.encerrar_arena()
 		
-	if anim_sprite.sprite_frames.has_animation("Die"):
-		anim_sprite.play("Die")
-	else:
-		queue_free()
+	anim_sprite.play("Death")
 
 
 func _on_area_ataque_detect_body_entered(body: Node2D) -> void:
-	if (body.is_in_group("Player") or body.is_in_group("player")) and not is_attacking and not is_hurt and not _stunned_by_light:
+	if (body.is_in_group("Player") or body.is_in_group("player")) and not is_attacking and not is_hurt and not _stunned_by_light and _attack_cooldown_timer <= 0.0:
 		is_attacking = true
 		anim_sprite.play("Attack")
 
@@ -196,8 +223,7 @@ func _on_animation_finished() -> void:
 	if anim_sprite.animation == "Attack":
 		is_attacking = false
 		hitbox_ataque_shape.disabled = true
-	elif anim_sprite.animation == "Hurt":
-		is_hurt = false
+		_attack_cooldown_timer = attack_cooldown_time
 	elif anim_sprite.animation == "Skill1":
 		is_casting = false
 	elif anim_sprite.animation == "Death":

@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="7_f5mdn"]
 [ext_resource type="Texture2D" uid="uid://d4ilm32363xej" path="res://background/Background-fase3/frame-0003.png" id="7_sr07l"]
 [ext_resource type="PackedScene" uid="uid://ci67qfs856tkl" path="res://scenes/boss.tscn" id="9_im6ug"]
+[ext_resource type="PackedScene" uid="uid://onoyyl72mjmt" path="res://scenes/boss_soul.tscn" id="11_dkjnu"]
 [ext_resource type="Script" uid="uid://b2kblvwcty75b" path="res://scripts/arena_boss.gd" id="12_dvr8a"]
 [ext_resource type="PackedScene" uid="uid://bxptui44tf71s" path="res://scenes/espinhos_area.tscn" id="14_13wyk"]
 [ext_resource type="PackedScene" uid="uid://cs1kdxh3ew743" path="res://prefabs/falling_platform-4.tscn" id="15_khbvl"]
@@ -695,6 +696,11 @@ metadata/_edit_lock_ = true
 [node name="Boss" parent="." unique_id=702295039 instance=ExtResource("9_im6ug")]
 position = Vector2(1936, 206.00003)
 scale = Vector2(3, 3)
+max_health = 20
+speed = 120.0
+skill_cooldown_time = 50.0
+soul_scene = ExtResource("11_dkjnu")
+attack_cooldown_time = 4.0
 
 [node name="Particulas" type="GPUParticles2D" parent="." unique_id=764590750]
 modulate = Color(0.8, 0.8, 0.8, 1)
