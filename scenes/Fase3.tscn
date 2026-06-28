@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="7_f5mdn"]
 [ext_resource type="Texture2D" uid="uid://d4ilm32363xej" path="res://background/Background-fase3/frame-0003.png" id="7_sr07l"]
 [ext_resource type="PackedScene" uid="uid://ci67qfs856tkl" path="res://scenes/boss.tscn" id="9_im6ug"]
-[ext_resource type="PackedScene" uid="uid://onoyyl72mjmt" path="res://scenes/boss_soul.tscn" id="11_dkjnu"]
 [ext_resource type="Script" uid="uid://b2kblvwcty75b" path="res://scripts/arena_boss.gd" id="12_dvr8a"]
 [ext_resource type="PackedScene" uid="uid://bxptui44tf71s" path="res://scenes/espinhos_area.tscn" id="14_13wyk"]
 [ext_resource type="PackedScene" uid="uid://cs1kdxh3ew743" path="res://prefabs/falling_platform-4.tscn" id="15_khbvl"]
@@ -633,14 +632,12 @@ z_index = -2
 scroll_scale = Vector2(0.3, 0.3)
 repeat_size = Vector2(400, 0)
 repeat_times = 5
-metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2DBackground4" unique_id=557920491]
 modulate = Color(0.45020777, 0.0025964319, 0.822043, 1)
-position = Vector2(204.01926, 295.62497)
-scale = Vector2(2.8608434, 2.4447916)
+position = Vector2(204.01926, 209.5)
+scale = Vector2(2.8608434, 3.1624994)
 texture = ExtResource("5_6ydiw")
-metadata/_edit_lock_ = true
 
 [node name="Luz" type="PointLight2D" parent="ParallaxBackground/Parallax2DBackground4" unique_id=1124690787]
 position = Vector2(865.82544, 181.10081)
@@ -697,10 +694,7 @@ metadata/_edit_lock_ = true
 position = Vector2(1936, 206.00003)
 scale = Vector2(3, 3)
 max_health = 20
-speed = 120.0
 skill_cooldown_time = 50.0
-soul_scene = ExtResource("11_dkjnu")
-attack_cooldown_time = 4.0
 
 [node name="Particulas" type="GPUParticles2D" parent="." unique_id=764590750]
 modulate = Color(0.8, 0.8, 0.8, 1)
