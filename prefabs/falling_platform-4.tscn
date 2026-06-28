@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cs1kdxh3ew743"]
+
+[ext_resource type="Script" uid="uid://cw0wpmw8lcfq1" path="res://scripts/falling_platform.gd" id="1_bxcyw"]
+[ext_resource type="Texture2D" uid="uid://dhgm1oq61betq" path="res://sprites/Falling Platform 4.png" id="2_pfi7c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxcyw"]
+size = Vector2(60, 39.5)
+
+[sub_resource type="Animation" id="Animation_ptv88"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_2dmod"]
+resource_name = "shake"
+length = 0.4
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gkrhf"]
+_data = {
+&"RESET": SubResource("Animation_ptv88"),
+&"shake": SubResource("Animation_2dmod")
+}
+
+[node name="falling-platform" type="AnimatableBody2D" unique_id=1791865354]
+collision_mask = 0
+script = ExtResource("1_bxcyw")
+
+[node name="texture" type="Sprite2D" parent="." unique_id=1355925308]
+position = Vector2(0, 1)
+texture = ExtResource("2_pfi7c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=216906247]
+position = Vector2(-16, -2.75)
+shape = SubResource("RectangleShape2D_bxcyw")
+one_way_collision = true
+
+[node name="respawn_timer" type="Timer" parent="." unique_id=361119386]
+
+[node name="anim" type="AnimationPlayer" parent="." unique_id=1813319503]
+libraries/ = SubResource("AnimationLibrary_gkrhf")
+
+[connection signal="timeout" from="respawn_timer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
