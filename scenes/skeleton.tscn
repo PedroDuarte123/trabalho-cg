@@ -523,3 +523,7 @@ scale = Vector2(2.0624998, 2.0624998)
 sprite_frames = SubResource("SpriteFrames_4aoad")
 frame = 8
 frame_progress = 1.0
+
+[node name="EspinhoRayCast2D" type="RayCast2D" parent="." unique_id=1804729817]
+position = Vector2(0, 45)
+target_position = Vector2(0, 15)

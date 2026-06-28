@@ -7,7 +7,7 @@
 size = Vector2(199, 62)
 
 [node name="espinhos_area" type="Area2D" unique_id=1159526242]
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_prhkh")
 
 [node name="collision" type="CollisionShape2D" parent="." unique_id=1491194139]

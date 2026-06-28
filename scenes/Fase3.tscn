@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bmfripwsqvd43"]
 
 [ext_resource type="AudioStream" uid="uid://c6vovutcu7jar" path="res://audio/Hunter_s-Dream-SIE-Sound-Team-_youtube_.wav" id="1_6ydiw"]
-[ext_resource type="Script" uid="uid://c2d43sboa7eiq" path="res://scenes/fase_3.gd" id="1_frsun"]
+[ext_resource type="Script" uid="uid://c2d43sboa7eiq" path="res://scripts/fase_3.gd" id="1_frsun"]
 [ext_resource type="PackedScene" uid="uid://c7e573bl2lhj2" path="res://scenes/player.tscn" id="2_5q615"]
 [ext_resource type="Texture2D" uid="uid://dq23lm66g84u7" path="res://sprites/Tiles.png" id="3_sr07l"]
 [ext_resource type="Texture2D" uid="uid://bkrxoxd36sduf" path="res://sprites/Salt.png" id="4_frsun"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="7_f5mdn"]
 [ext_resource type="Texture2D" uid="uid://d4ilm32363xej" path="res://background/Background-fase3/frame-0003.png" id="7_sr07l"]
 [ext_resource type="PackedScene" uid="uid://ci67qfs856tkl" path="res://scenes/boss.tscn" id="9_im6ug"]
+[ext_resource type="Script" uid="uid://b2kblvwcty75b" path="res://scripts/arena_boss.gd" id="12_dvr8a"]
 
 [sub_resource type="Environment" id="Environment_13wyk"]
 background_mode = 3
@@ -474,6 +475,24 @@ scale_max = 4.0
 color = Color(4.088911, 2.6895425, 4.088911, 1)
 color_ramp = SubResource("GradientTexture1D_ssvqc")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_im6ug"]
+size = Vector2(2128, 399)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_f5mdn"]
+a = Vector2(-1, 400)
+b = Vector2(-1, 2)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_13wyk"]
+a = Vector2(0, -407)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_khbvl"]
+a = Vector2(2127, -2)
+b = Vector2(-4, -1)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_dkjnu"]
+a = Vector2(-4, 4)
+b = Vector2(2125, 4)
+
 [node name="Fase3" type="Node2D" unique_id=1618913817]
 script = ExtResource("1_frsun")
 
@@ -599,3 +618,35 @@ script = ExtResource("6_dvr8a")
 [node name="LifebarCanvasLayer" parent="." unique_id=198287825 instance=ExtResource("7_f5mdn")]
 offset = Vector2(50, 30)
 transform = Transform2D(1, 0, 0, 1, 50, 30)
+
+[node name="ArenaBoss" type="Area2D" parent="." unique_id=1622254310 node_paths=PackedStringArray("boss_node")]
+script = ExtResource("12_dvr8a")
+boss_node = NodePath("../Boss")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaBoss" unique_id=224515257]
+position = Vector2(1936, 310.5)
+shape = SubResource("RectangleShape2D_im6ug")
+
+[node name="ParedeEsquerda" type="StaticBody2D" parent="ArenaBoss" unique_id=411800449]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaBoss/ParedeEsquerda" unique_id=1445217740]
+position = Vector2(873, 110)
+shape = SubResource("SegmentShape2D_f5mdn")
+
+[node name="ParedeDireita" type="StaticBody2D" parent="ArenaBoss" unique_id=1020294254]
+position = Vector2(3001, 519)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaBoss/ParedeDireita" unique_id=985129324]
+shape = SubResource("SegmentShape2D_13wyk")
+
+[node name="Teto" type="StaticBody2D" parent="ArenaBoss" unique_id=1780032868]
+position = Vector2(876, 111)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaBoss/Teto" unique_id=1730513627]
+shape = SubResource("SegmentShape2D_khbvl")
+
+[node name="Chao" type="StaticBody2D" parent="ArenaBoss" unique_id=1239078048]
+position = Vector2(876, 505)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaBoss/Chao" unique_id=290293769]
+shape = SubResource("SegmentShape2D_dkjnu")

@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var skill_cooldown_time: float = 50.0
 @export var soul_scene: PackedScene = preload("res://scenes/boss_soul.tscn")
 
+
 var current_health: int
 var player: CharacterBody2D = null
 var is_dead: bool = false
@@ -27,27 +28,38 @@ func _ready() -> void:
 	_skill_timer = skill_cooldown_time
 	_setup_boss_armor()
 
-	player = get_tree().get_first_node_in_group("Player")
-	if player == null:
-		player = get_tree().get_first_node_in_group("player")
+	# Começa nulo para a ArenaBoss ativar depois
+	player = null
 
-	print("PLAYER ACHADO:", player)
-
-	$AreaPerseguicao.body_entered.connect(_on_area_perseguicao_body_entered)
-	$AreaPerseguicao.body_exited.connect(_on_area_perseguicao_body_exited)
+	# Use apenas o nome direto do nó filho:
 	$AreaAtaqueDetect.body_entered.connect(_on_area_ataque_detect_body_entered)
 	$HitboxAtaque.body_entered.connect(_on_hitbox_ataque_body_entered)
+	
 	anim_sprite.animation_finished.connect(_on_animation_finished)
 
-
 func _setup_boss_armor() -> void:
+	# Se você não tiver o nó "ShieldBrokenEffect" na cena do Boss, criamos um visível
+	# Mas em vez de vazio, vamos fazer o próprio corpo do Boss piscar azul/branco quando quebrar
 	var armor := LightArmor.new()
 	armor.max_armor = 4.0
 	armor.drain_per_second = 1.0
 	armor.debug_log = false
 	armor.lit_changed.connect(_on_light_armor_lit_changed)
+	
+	# Conecta o sinal de quebra de armadura para fazer um efeito visual direto no Boss
+	armor.armor_broken.connect(_on_boss_armor_broken)
+	
 	add_child(armor)
 	_light_armor = armor
+
+# --- NOVA FUNÇÃO DE FEEDBACK DE QUEBRA DE ESCUDO ---
+func _on_boss_armor_broken() -> void:
+	# Como o ShieldBrokenEffect do script original pode estar ausente ou nulo,
+	# geramos um flash de luz modulando a cor do próprio Boss para dar o feedback visual
+	var tween = create_tween()
+	tween.tween_property(anim_sprite, "modulate", Color(0, 2, 2, 1), 0.1) # Brilho ciano/azul
+	tween.tween_property(anim_sprite, "modulate", Color(1, 1, 1, 1), 0.15) # Volta ao normal
+	print("[Boss] Escudo de luz estilhaçado!")
 
 
 func _on_light_armor_lit_changed(is_lit: bool) -> void:
@@ -58,53 +70,55 @@ func _on_light_armor_lit_changed(is_lit: bool) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	
 	if is_dead:
 		return
 		
-	if player and not is_attacking and not is_hurt and not _stunned_by_light and not is_casting:
-		if $AreaAtaqueDetect.get_overlapping_bodies().has(player):
-			is_attacking = true
-			velocity = Vector2.ZERO
-			anim_sprite.play("Attack")
-
+	# Gerenciador da Skill de Recarga (50 segundos)
 	if _skill_timer > 0.0:
 		_skill_timer -= delta
 	else:
-		if not is_hurt and not is_dead and not _stunned_by_light:
+		if not is_hurt and not is_dead:
 			use_recharge_skill()
 
-	if _stunned_by_light or is_hurt or is_casting:
+	if is_hurt or is_casting:
 		velocity = Vector2.ZERO
 		move_and_slide()
 		return
 
+	# --- CONTROLE DOS FRAMES EXATOS DE ATAQUE ---
 	if is_attacking:
-		velocity = Vector2.ZERO
-
-		if anim_sprite.animation == "Attack" and anim_sprite.frame in [2, 3, 4, 5, 6, 7]:
+		# Ativa a colisão apenas se estiver na animação "Attack" E nos frames específicos: 2, 3, 9 ou 10
+		if anim_sprite.animation == "Attack" and anim_sprite.frame in [2, 3, 9, 10]:
 			hitbox_ataque_shape.disabled = false
 		else:
 			hitbox_ataque_shape.disabled = true
+	else:
+		# Garante que a hitbox fica desligada se não estiver atacando
+		hitbox_ataque_shape.disabled = true
 
-		move_and_slide()
-		return
-
-	if player:
+	# Movimentação e Perseguição Flutuante Implacável
+	if player and not player.is_dead:
 		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * speed
-
-		anim_sprite.play("Idle")
-		anim_sprite.flip_h = direction.x < 0
-
-		$HitboxAtaque.scale.x = -1 if direction.x < 0 else 1
-		$AreaAtaqueDetect.scale.x = -1 if direction.x < 0 else 1
+		
+		# Se estiver sob a lanterna (_stunned_by_light), ele fica ligeiramente mais lento (40% da velocidade)
+		var velocidade_atual = speed * 0.4 if _stunned_by_light else speed
+		velocity = direction * velocidade_atual
+		
+		# Só toca a animação de movimento se não estiver executando a de Ataque
+		if not is_attacking:
+			anim_sprite.play("Idle")
+			
+		# --- INVERSÃO COMPLETA E PERFEITA VIA PIVOT ---
+		if direction.x < 0:
+			$Pivot.scale.x = -1
+		elif direction.x > 0:
+			$Pivot.scale.x = 1
 	else:
 		velocity = Vector2.ZERO
-		anim_sprite.play("Idle")
+		if not is_attacking:
+			anim_sprite.play("Idle")
 
 	move_and_slide()
-
 
 func use_recharge_skill() -> void:
 	is_casting = true
@@ -155,21 +169,16 @@ func die() -> void:
 	velocity = Vector2.ZERO
 	hitbox_ataque_shape.set_deferred("disabled", true)
 	$CollisionShape2D.set_deferred("disabled", true)
-
-	if anim_sprite.sprite_frames.has_animation("Death"):
-		anim_sprite.play("Death")
+	
+	# Procura o nó da Arena na árvore e libera o jogador e a câmera
+	var arena = get_tree().current_scene.find_child("ArenaBoss", true, false)
+	if arena and arena.has_method("encerrar_arena"):
+		arena.encerrar_arena()
+		
+	if anim_sprite.sprite_frames.has_animation("Die"):
+		anim_sprite.play("Die")
 	else:
 		queue_free()
-
-
-func _on_area_perseguicao_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") or body.is_in_group("player"):
-		player = body
-
-
-func _on_area_perseguicao_body_exited(body: Node2D) -> void:
-	if body == player:
-		player = null
 
 
 func _on_area_ataque_detect_body_entered(body: Node2D) -> void:
