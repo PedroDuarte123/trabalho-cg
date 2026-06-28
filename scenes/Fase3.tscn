@@ -693,7 +693,7 @@ texture = ExtResource("7_sr07l")
 metadata/_edit_lock_ = true
 
 [node name="Boss" parent="." unique_id=702295039 instance=ExtResource("9_im6ug")]
-position = Vector2(566, 206.00003)
+position = Vector2(1936, 206.00003)
 scale = Vector2(3, 3)
 
 [node name="Particulas" type="GPUParticles2D" parent="." unique_id=764590750]

@@ -3,12 +3,15 @@ extends Area2D
 @export var camera_zoom_arena: Vector2 = Vector2(0.7, 0.7) # Zoom mais distante para ver o boss todo
 @export var boss_node: CharacterBody2D = null # Arraste o seu Boss para cá no Inspetor
 
-var _camera_original_zoom: Vector2
+const PLAYER_COLLISION_LAYER := 2
+
 var _camera: Camera2D = null
+var _arena_camera: Camera2D = null
 var _player: CharacterBody2D = null
 var _arena_ativa: bool = false
 
 func _ready() -> void:
+	collision_mask |= PLAYER_COLLISION_LAYER
 	body_entered.connect(_on_body_entered)
 	# Garante que as paredes começam invisíveis e transitáveis
 	_alternar_paredes(false)
@@ -27,11 +30,10 @@ func _on_body_entered(body: Node2D) -> void:
 		# Captura a câmera que está seguindo o Player
 		_camera = _player.get_node_or_null("Camera2D")
 		if _camera:
-			_camera_original_zoom = _camera.zoom
+			_preparar_camera_arena()
 			var tween = create_tween().set_parallel(true)
-			tween.tween_property(_camera, "zoom", camera_zoom_arena, 1.0)
-			_camera.top_level = true
-			tween.tween_property(_camera, "global_position", global_position, 1.0)
+			tween.tween_property(_arena_camera, "zoom", camera_zoom_arena, 1.0)
+			tween.tween_property(_arena_camera, "global_position", _obter_centro_arena(), 1.0)
 		
 		# --- BUSCA AUTOMÁTICA DO BOSS CONTRA ERROS NO INSPETOR ---
 		if boss_node == null:
@@ -40,11 +42,21 @@ func _on_body_entered(body: Node2D) -> void:
 			# Se o nome do seu boss na árvore for diferente (ex: "BossInimigo"), mude o texto "Boss" acima
 		
 		# Injeta o player diretamente no Boss para ligar a perseguição
-		if boss_node and "player" in boss_node:
-			boss_node.player = _player
+		if boss_node:
+			boss_node.set("player", _player)
 			print("[Arena] Jogador detectado! Boss ativado e perseguindo.")
 		else:
 			print("[ERRO Arena] Não foi possível encontrar o nó do Boss para ativar a perseguição!")
+
+func _preparar_camera_arena() -> void:
+	if _arena_camera == null:
+		_arena_camera = Camera2D.new()
+		_arena_camera.name = "CameraArenaBoss"
+		add_child(_arena_camera)
+
+	_arena_camera.global_position = _camera.global_position
+	_arena_camera.zoom = _camera.zoom
+	_arena_camera.make_current()
 
 func _alternar_paredes(ativar: bool) -> void:
 	# Percorre os filhos procurando as paredes estáticas e liga/desliga a física delas
@@ -52,14 +64,32 @@ func _alternar_paredes(ativar: bool) -> void:
 		if child is StaticBody2D:
 			for shape in child.get_children():
 				if shape is CollisionShape2D:
-					shape.set_deferred("disabled", not ativar)
+					shape.set_deferred("disabled", true if child.name.to_lower() == "chao" else not ativar)
+
+func _obter_centro_arena() -> Vector2:
+	for child in get_children():
+		if child is CollisionShape2D:
+			return child.global_position
+	return global_position
 
 # Chame essa função no script do Boss quando ele morrer: get_node("../ArenaBoss").encerrar_arena()
 func encerrar_arena() -> void:
 	_alternar_paredes(false)
-	if _camera and is_instance_valid(_camera):
+	_arena_ativa = false
+	if boss_node:
+		boss_node.set("player", null)
+	if _arena_camera and is_instance_valid(_arena_camera) and _camera and is_instance_valid(_camera):
 		var tween = create_tween().set_parallel(true)
-		tween.tween_property(_camera, "zoom", _camera_original_zoom, 1.0)
+		tween.tween_property(_arena_camera, "zoom", _camera.zoom, 1.0)
+		tween.tween_property(_arena_camera, "global_position", _camera.global_position, 1.0)
+		await tween.finished
 		# Devolve o controle da câmera ao player
-		_camera.top_level = false
-		_camera.position = Vector2.ZERO
+		_camera.make_current()
+
+func resetar_arena() -> void:
+	_alternar_paredes(false)
+	_arena_ativa = false
+	if boss_node:
+		boss_node.set("player", null)
+	if _camera and is_instance_valid(_camera):
+		_camera.make_current()

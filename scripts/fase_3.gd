@@ -24,6 +24,11 @@ func _ready() -> void:
 func get_last_checkpoint() -> Vector2:
 	return respawn_position
 
+func reset_boss_arena() -> void:
+	var arena = get_node_or_null("ArenaBoss")
+	if arena and arena.has_method("resetar_arena"):
+		arena.resetar_arena()
+
 func set_checkpoint(new_respawn_position: Vector2) -> void:
 	respawn_position = new_respawn_position
 	_save_checkpoint()
@@ -40,6 +45,7 @@ func _on_player_died() -> void:
 			player.respawn_at(respawn_position)
 		else:
 			player.global_position = respawn_position
+		reset_boss_arena()
 
 
 func _instantiate_death_screen():
