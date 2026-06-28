@@ -6,6 +6,11 @@ extends CharacterBody2D
 @export var soul_scene: PackedScene = preload("res://scenes/boss_soul.tscn")
 @export var attack_cooldown_time: float = 4.0
 
+@export_group("Light Armor")
+@export_range(0.1, 999.0, 0.1) var light_armor_max: float = 5.0
+@export_range(0.0, 999.0, 0.1) var light_armor_drain_per_second: float = 1.0
+@export var light_armor_debug_log: bool = true
+
 # --- CONFIGURAÇÕES DE KNOCKBACK ---
 const KNOCKBACK_H: float = 240.0
 const KNOCKBACK_V: float = -150.0      
@@ -49,9 +54,9 @@ func _ready() -> void:
 
 func _setup_boss_armor() -> void:
 	var armor := LightArmor.new()
-	armor.max_armor = 5.0
-	armor.drain_per_second = 1.0
-	armor.debug_log = true
+	armor.max_armor = light_armor_max
+	armor.drain_per_second = light_armor_drain_per_second
+	armor.debug_log = light_armor_debug_log
 	armor.lit_changed.connect(_on_light_armor_lit_changed)
 	armor.armor_broken.connect(_on_boss_armor_broken)
 	

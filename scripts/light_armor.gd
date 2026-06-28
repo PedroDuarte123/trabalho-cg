@@ -36,6 +36,7 @@ func _ready() -> void:
 	armor = max_armor
 	_target = _resolve_target()
 	if _target:
+		_target.add_to_group("light_target")
 		_original_modulate = _target.modulate
 	_connect_to_flashlight()
 	set_process(true)
