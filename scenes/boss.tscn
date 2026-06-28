@@ -335,7 +335,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pbxxu")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Attack",
 "speed": 7.0
 }, {
@@ -400,7 +400,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5w2ut")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Death",
 "speed": 10.0
 }, {
@@ -417,7 +417,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_q6jog")
 }],
-"loop": true,
+"loop": 1,
 "name": &"Idle",
 "speed": 8.0
 }, {
@@ -458,7 +458,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_uc18t")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Skill1",
 "speed": 8.0
 }, {
@@ -478,7 +478,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ecxjq")
 }],
-"loop": false,
+"loop": 0,
 "name": &"Summon",
 "speed": 6.0
 }, {
@@ -501,7 +501,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_b525p")
 }],
-"loop": false,
+"loop": 0,
 "name": &"SummonAppear",
 "speed": 7.0
 }, {
@@ -524,7 +524,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qvw2j")
 }],
-"loop": false,
+"loop": 0,
 "name": &"SummonDeath",
 "speed": 6.0
 }, {
@@ -541,12 +541,13 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qbor3")
 }],
-"loop": true,
+"loop": 1,
 "name": &"SummonIdle",
 "speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5f346"]
+size = Vector2(394, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0onds"]
 size = Vector2(56, 32)
@@ -556,6 +557,7 @@ radius = 26.0
 height = 60.0
 
 [node name="Boss" type="CharacterBody2D" unique_id=702295039]
+collision_mask = 2
 script = ExtResource("1_2avx2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1270292863]
@@ -565,15 +567,19 @@ shape = SubResource("RectangleShape2D_mautr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1617496902]
 sprite_frames = SubResource("SpriteFrames_6sve4")
 animation = &"Attack"
-frame = 9
-frame_progress = 0.87701887
+frame = 12
+frame_progress = 1.0
 
 [node name="AreaPerseguicao" type="Area2D" parent="." unique_id=552777353]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaPerseguicao" unique_id=2098863048]
+position = Vector2(-7, 4.5)
 shape = SubResource("RectangleShape2D_5f346")
 
 [node name="AreaAtaqueDetect" type="Area2D" parent="." unique_id=1750762823]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaAtaqueDetect" unique_id=1632500325]
 position = Vector2(37, 4)
@@ -581,6 +587,8 @@ shape = SubResource("RectangleShape2D_0onds")
 
 [node name="HitboxAtaque" type="Area2D" parent="." unique_id=1464306832]
 position = Vector2(17, -6)
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxAtaque" unique_id=1309652201]
 shape = SubResource("CapsuleShape2D_lfs1x")

@@ -1,32 +1,37 @@
 extends Node2D
 
+@export var next_scene_path: String = "res://scenes/Fase2.tscn"
+
 var _player_in_range := false
+var _is_transitioning := false
+
 @onready var portal: Node2D = $"."
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if not _player_in_range:
+	if not _player_in_range or _is_transitioning:
 		return
+
 	if Input.is_action_just_pressed("Interact"):
+		_is_transitioning = true
+
 		var player = get_tree().get_first_node_in_group("player")
 		$PortalAnimation.play("default")
-		player.set_physics_process(false)
+
+		if player:
+			player.set_physics_process(false)
+
 		await get_tree().create_timer(0.8).timeout
-		
-		player.visible = false
-		
+
+		if player:
+			player.visible = false
+
 		await get_tree().create_timer(1.0).timeout
-		
+
 		var tween = create_tween()
 		tween.tween_property(portal, "modulate:a", 0.0, 0.3)
 		await tween.finished
-		
-		portal.visible = false
-		
+
+		get_tree().change_scene_to_file(next_scene_path)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

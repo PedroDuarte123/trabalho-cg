@@ -22,7 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://du36paq1ox40m" path="res://scenes/lifebar.tscn" id="18_ssvqc"]
 [ext_resource type="PackedScene" path="res://scenes/skeleton.tscn" id="21_5newe"]
 [ext_resource type="PackedScene" uid="uid://dvxkiun4yoc8g" path="res://scenes/camera_intro_pan.tscn" id="22_camera_intro_pan"]
-[ext_resource type="Script" uid="uid://1838f4rv7vej" path="res://scripts/game_manager.gd" id="23_game_manager"]
+[ext_resource type="Script" uid="uid://1838f4rv7vej" path="res://scripts/fase1.gd" id="23_game_manager"]
 
 [sub_resource type="Environment" id="Environment_kvuet"]
 background_mode = 3
