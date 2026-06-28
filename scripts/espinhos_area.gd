@@ -32,6 +32,8 @@ func _on_body_entered(body: Node2D) -> void:
 				if is_instance_valid(body) and not body.is_dead:
 					body.global_position = game.get_last_checkpoint()
 					body.velocity = Vector2.ZERO
+					if game.has_method("reset_boss_arena"):
+						game.reset_boss_arena()
 
 func _on_body_exited(body: Node2D) -> void:
 	if body.is_in_group("player"):

@@ -108,11 +108,11 @@ func _physics_process(delta: float) -> void:
 		if not is_attacking:
 			anim_sprite.play("Idle")
 			
-		# --- INVERSÃO COMPLETA E PERFEITA VIA PIVOT ---
+		# --- INVERSÃO DO SPRITE DO BOSS ---
 		if direction.x < 0:
-			$Pivot.scale.x = -1
+			anim_sprite.flip_h = true
 		elif direction.x > 0:
-			$Pivot.scale.x = 1
+			anim_sprite.flip_h = false
 	else:
 		velocity = Vector2.ZERO
 		if not is_attacking:
