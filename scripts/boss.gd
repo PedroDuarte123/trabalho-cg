@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var max_health: int = 10 # Atualizado para 10 de vida total
+@export var max_health: int = 10 
 @export var speed: float = 120.0
-@export var skill_cooldown_time: float = 20.0 # Reduzido para 20 segundos
+@export var skill_cooldown_time: float = 20.0 
 @export var soul_scene: PackedScene = preload("res://scenes/boss_soul.tscn")
 @export var attack_cooldown_time: float = 4.0
 
@@ -12,9 +12,9 @@ extends CharacterBody2D
 @export var light_armor_debug_log: bool = true
 
 # --- CONFIGURAÇÕES DE KNOCKBACK ---
-const KNOCKBACK_H: float = 240.0
-const KNOCKBACK_V: float = -150.0      
-const KNOCKBACK_DURATION: float = 0.25 
+const KNOCKBACK_H: float = 120.0
+const KNOCKBACK_V: float = -75.0      
+const KNOCKBACK_DURATION: float = 0.20 
 var _knockback_timer: float = 0.0
 
 var current_health: int
@@ -84,18 +84,15 @@ func _physics_process(delta: float) -> void:
 	if is_dead:
 		return
 		
-	# Gerenciador da Skill de Recarga
 	if _skill_timer > 0.0:
 		_skill_timer -= delta
 	else:
 		if not is_hurt and not is_dead and not _stunned_by_light:
 			use_recharge_skill()
 
-	# Reduz o tempo de espera do ataque normal
 	if _attack_cooldown_timer > 0.0:
 		_attack_cooldown_timer -= delta
 
-	# Processa o tempo restante do Knockback
 	if _knockback_timer > 0.0:
 		_knockback_timer -= delta
 		move_and_slide()
@@ -106,7 +103,6 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# Paralisia total se estiver sob a lanterna
 	if _stunned_by_light:
 		velocity = Vector2.ZERO
 		if not is_hurt and not is_casting:
@@ -114,24 +110,28 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# CONTROLE DOS FRAMES EXATOS DE ATAQUE
+	# CORREÇÃO: Removidos os colchetes daqui. Agora usa checagem direta frame a frame
 	if is_attacking:
-		if anim_sprite.animation == "Attack" and anim_sprite.frame in [2, 3, 9, 10]:
+		var f := anim_sprite.frame
+		if anim_sprite.animation == "Attack" and (f == 2 or f == 3 or f == 9 or f == 10):
 			hitbox_ataque_shape.disabled = false
 		else:
 			hitbox_ataque_shape.disabled = true
 	else:
 		hitbox_ataque_shape.disabled = true
 
-	# Movimentação e Perseguição (Flutuando em Idle)
 	if player and not player.is_dead:
+		var distance_to_player = global_position.distance_to(player.global_position)
 		var direction = (player.global_position - global_position).normalized()
-		velocity = direction * speed
+		
+		if distance_to_player > 50.0:
+			velocity = direction * speed
+		else:
+			velocity = Vector2.ZERO
 		
 		if not is_attacking:
 			anim_sprite.play("Idle")
 			
-		# Inversão de direção das hitboxes
 		if direction.x < 0:
 			anim_sprite.flip_h = true
 			area_ataque_detect.scale.x = -1
@@ -169,9 +169,9 @@ func damage(amount: int = 1, damage_source_position: Vector2 = Vector2.ZERO) -> 
 
 	current_health -= amount
 
-	# Ativa a invocação ao atingir 5 de vida ou menos
 	if current_health <= 5 and not souls_summoned:
 		summon_souls()
+		anim_sprite.play("Summon")
 
 	if current_health <= 0:
 		die()
@@ -186,25 +186,33 @@ func damage(amount: int = 1, damage_source_position: Vector2 = Vector2.ZERO) -> 
 func summon_souls() -> void:
 	souls_summoned = true
 	
-	# Definição dos offsets geométricos (ajuste a distância de 60 pixels se achar muito longe/perto)
-	var spawn_offsets = [
-		Vector2(0, -60),   # Acima
-		Vector2(-60, 0),  # Esquerda
-		Vector2(60, 0)    # Direita
-	]
-	
-	for offset in spawn_offsets:
-		if soul_scene:
-			var soul = soul_scene.instantiate()
-			soul.global_position = global_position + offset
-			get_tree().current_scene.add_child(soul)
+	# Usando atribuição direta sem loops de array complexos
+	if soul_scene:
+		var s1 = soul_scene.instantiate()
+		s1.global_position = global_position + Vector2(0, -60)
+		get_tree().current_scene.add_child(s1)
+		
+		var s2 = soul_scene.instantiate()
+		s2.global_position = global_position + Vector2(-60, 0)
+		get_tree().current_scene.add_child(s2)
+		
+		var s3 = soul_scene.instantiate()
+		s3.global_position = global_position + Vector2(60, 0)
+		get_tree().current_scene.add_child(s3)
 
 
 func die() -> void:
+	if is_dead:
+		return
 	is_dead = true
 	velocity = Vector2.ZERO
+	
 	hitbox_ataque_shape.set_deferred("disabled", true)
-	$CollisionShape2D.set_deferred("disabled", true)
+	if has_node("CollisionShape2D"):
+		$CollisionShape2D.set_deferred("disabled", true)
+	
+	if is_instance_valid(_light_armor):
+		_light_armor.queue_free()
 	
 	var arena = get_tree().current_scene.find_child("ArenaBoss", true, false)
 	if arena and arena.has_method("encerrar_arena"):
@@ -214,9 +222,12 @@ func die() -> void:
 
 
 func _on_area_ataque_detect_body_entered(body: Node2D) -> void:
-	if (body.is_in_group("Player") or body.is_in_group("player")) and not is_attacking and not is_hurt and not _stunned_by_light and _attack_cooldown_timer <= 0.0:
-		is_attacking = true
-		anim_sprite.play("Attack")
+	if body.is_in_group("Player") or body.is_in_group("player"):
+		player = body as CharacterBody2D
+		
+		if not is_attacking and not is_hurt and not _stunned_by_light and _attack_cooldown_timer <= 0.0:
+			is_attacking = true
+			anim_sprite.play("Attack")
 
 
 func _on_hitbox_ataque_body_entered(body: Node2D) -> void:
@@ -232,4 +243,4 @@ func _on_animation_finished() -> void:
 	elif anim_sprite.animation == "Skill1":
 		is_casting = false
 	elif anim_sprite.animation == "Death":
-		queue_free()
+		call_deferred("queue_free")
