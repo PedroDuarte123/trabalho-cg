@@ -351,7 +351,7 @@ size = Vector2(56, 98)
 
 [node name="Player" type="CharacterBody2D" unique_id=476727846 groups=["Player", "player"]]
 collision_layer = 2
-collision_mask = 5
+collision_mask = 13
 script = ExtResource("1_dqkch")
 
 [node name="Shadow" type="Sprite2D" parent="." unique_id=1031033283]
@@ -408,7 +408,7 @@ position = Vector2(25, -4)
 
 [node name="AreaAtaque" type="Area2D" parent="." unique_id=2127601578]
 visibility_layer = 9
-collision_mask = 8
+collision_mask = 24
 
 [node name="CollisionAtaque" type="CollisionShape2D" parent="AreaAtaque" unique_id=50728429]
 visibility_layer = 9

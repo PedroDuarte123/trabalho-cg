@@ -32,6 +32,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var player_raycast = $PlayerRayCast2D
 @onready var cliff_raycast = $CliffRayCast2D
 @onready var hitbox_espada_shape = $AreaDanoEspada/CollisionShape2D
+@onready var espinho_raycast = $EspinhoRayCast2D
 
 var _light_armor: LightArmor = null
 var _stunned_by_light: bool = false
@@ -51,6 +52,7 @@ func _ready():
 	current_health = max_health
 	_setup_light_armor()
 	$AreaDanoEspada.body_entered.connect(_on_area_dano_espada_body_entered)
+	
 
 
 func _setup_light_armor() -> void:
@@ -127,8 +129,17 @@ func _physics_process(delta):
 		_patrol_state()
 		_check_for_player()
 
+	# --- AJUSTE RIGIDO CONTRA EMPURRÕES DOS ESTADOS DE ANIMAÇÃO ---
+	if is_attacking:
+		velocity.x = 0
+
+
 	move_and_slide()
 
+func _on_area_entered(area: Area2D) -> void:
+	# Se o esqueleto tocar em qualquer Area2D que tenha "espinho" no nome
+	if "espinho" in area.name.to_lower():
+		die()
 
 func _patrol_state():
 	# Verifica se o raio da parede bateu em algo
